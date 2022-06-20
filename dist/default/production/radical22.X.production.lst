@@ -1,0 +1,3321 @@
+
+
+Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
+                                                                                               Tue Jun 14 12:55:44 2022
+
+Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1 
+     1                           	processor	12F1840
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	idataCOMMON,global,class=CODE,delta=2,noexec
+     5                           	psect	stringtext1,global,class=STRCODE,delta=2,noexec
+     6                           	psect	stringtext2,global,class=STRCODE,delta=2,noexec
+     7                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     9                           	psect	dataCOMMON,global,class=COMMON,space=1,delta=1,noexec
+    10                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,noexec
+    11                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+    12                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+    13                           	psect	maintext,global,class=CODE,merge=1,split=1,delta=2
+    14                           	psect	text1,local,class=CODE,merge=1,delta=2
+    15                           	psect	text2,local,class=CODE,merge=1,delta=2,group=1
+    16                           	psect	text3,local,class=CODE,merge=1,delta=2,group=1
+    17                           	psect	text4,local,class=CODE,merge=1,delta=2,group=1
+    18                           	psect	text5,local,class=CODE,merge=1,delta=2,group=1
+    19                           	psect	text6,local,class=CODE,merge=1,delta=2
+    20                           	psect	text7,local,class=CODE,merge=1,delta=2
+    21                           	psect	intentry,global,class=CODE,delta=2
+    22                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    23                           	dabs	1,0x7E,2
+    24  0000                     
+    25                           ; Version 2.20
+    26                           ; Generated 12/02/2020 GMT
+    27                           ; 
+    28                           ; Copyright © 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    29                           ; All rights reserved.
+    30                           ; 
+    31                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    32                           ; 
+    33                           ; Redistribution and use in source and binary forms, with or without modification, are
+    34                           ; permitted provided that the following conditions are met:
+    35                           ; 
+    36                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    37                           ;        conditions and the following disclaimer.
+    38                           ; 
+    39                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    40                           ;        of conditions and the following disclaimer in the documentation and/or other
+    41                           ;        materials provided with the distribution.
+    42                           ; 
+    43                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    44                           ;        software without specific prior written permission.
+    45                           ; 
+    46                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    47                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    48                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    49                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    50                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    51                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    52                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    53                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    54                           ; 
+    55                           ; 
+    56                           ; Code-generator required, PIC12F1840 Definitions
+    57                           ; 
+    58                           ; SFR Addresses
+    59  0000                     	;# 
+    60  0001                     	;# 
+    61  0002                     	;# 
+    62  0003                     	;# 
+    63  0004                     	;# 
+    64  0005                     	;# 
+    65  0006                     	;# 
+    66  0007                     	;# 
+    67  0008                     	;# 
+    68  0009                     	;# 
+    69  000A                     	;# 
+    70  000B                     	;# 
+    71  000C                     	;# 
+    72  0011                     	;# 
+    73  0012                     	;# 
+    74  0015                     	;# 
+    75  0016                     	;# 
+    76  0016                     	;# 
+    77  0017                     	;# 
+    78  0018                     	;# 
+    79  0019                     	;# 
+    80  001A                     	;# 
+    81  001B                     	;# 
+    82  001C                     	;# 
+    83  001E                     	;# 
+    84  001F                     	;# 
+    85  008C                     	;# 
+    86  0091                     	;# 
+    87  0092                     	;# 
+    88  0095                     	;# 
+    89  0096                     	;# 
+    90  0097                     	;# 
+    91  0098                     	;# 
+    92  0099                     	;# 
+    93  009A                     	;# 
+    94  009B                     	;# 
+    95  009B                     	;# 
+    96  009C                     	;# 
+    97  009D                     	;# 
+    98  009E                     	;# 
+    99  010C                     	;# 
+   100  0111                     	;# 
+   101  0112                     	;# 
+   102  0115                     	;# 
+   103  0116                     	;# 
+   104  0117                     	;# 
+   105  0118                     	;# 
+   106  0119                     	;# 
+   107  011A                     	;# 
+   108  011B                     	;# 
+   109  011D                     	;# 
+   110  011D                     	;# 
+   111  018C                     	;# 
+   112  0191                     	;# 
+   113  0191                     	;# 
+   114  0192                     	;# 
+   115  0193                     	;# 
+   116  0193                     	;# 
+   117  0193                     	;# 
+   118  0194                     	;# 
+   119  0195                     	;# 
+   120  0196                     	;# 
+   121  0197                     	;# 
+   122  0199                     	;# 
+   123  019A                     	;# 
+   124  019B                     	;# 
+   125  019B                     	;# 
+   126  019B                     	;# 
+   127  019B                     	;# 
+   128  019C                     	;# 
+   129  019C                     	;# 
+   130  019D                     	;# 
+   131  019E                     	;# 
+   132  019F                     	;# 
+   133  020C                     	;# 
+   134  0211                     	;# 
+   135  0211                     	;# 
+   136  0212                     	;# 
+   137  0212                     	;# 
+   138  0213                     	;# 
+   139  0213                     	;# 
+   140  0214                     	;# 
+   141  0214                     	;# 
+   142  0215                     	;# 
+   143  0215                     	;# 
+   144  0215                     	;# 
+   145  0216                     	;# 
+   146  0216                     	;# 
+   147  0217                     	;# 
+   148  0217                     	;# 
+   149  0291                     	;# 
+   150  0291                     	;# 
+   151  0292                     	;# 
+   152  0293                     	;# 
+   153  0294                     	;# 
+   154  0295                     	;# 
+   155  0295                     	;# 
+   156  0296                     	;# 
+   157  0391                     	;# 
+   158  0392                     	;# 
+   159  0393                     	;# 
+   160  039A                     	;# 
+   161  039C                     	;# 
+   162  039D                     	;# 
+   163  039E                     	;# 
+   164  039F                     	;# 
+   165  0FE4                     	;# 
+   166  0FE5                     	;# 
+   167  0FE6                     	;# 
+   168  0FE7                     	;# 
+   169  0FE8                     	;# 
+   170  0FE9                     	;# 
+   171  0FEA                     	;# 
+   172  0FEB                     	;# 
+   173  0FED                     	;# 
+   174  0FEE                     	;# 
+   175  0FEF                     	;# 
+   176  0000                     	;# 
+   177  0001                     	;# 
+   178  0002                     	;# 
+   179  0003                     	;# 
+   180  0004                     	;# 
+   181  0005                     	;# 
+   182  0006                     	;# 
+   183  0007                     	;# 
+   184  0008                     	;# 
+   185  0009                     	;# 
+   186  000A                     	;# 
+   187  000B                     	;# 
+   188  000C                     	;# 
+   189  0011                     	;# 
+   190  0012                     	;# 
+   191  0015                     	;# 
+   192  0016                     	;# 
+   193  0016                     	;# 
+   194  0017                     	;# 
+   195  0018                     	;# 
+   196  0019                     	;# 
+   197  001A                     	;# 
+   198  001B                     	;# 
+   199  001C                     	;# 
+   200  001E                     	;# 
+   201  001F                     	;# 
+   202  008C                     	;# 
+   203  0091                     	;# 
+   204  0092                     	;# 
+   205  0095                     	;# 
+   206  0096                     	;# 
+   207  0097                     	;# 
+   208  0098                     	;# 
+   209  0099                     	;# 
+   210  009A                     	;# 
+   211  009B                     	;# 
+   212  009B                     	;# 
+   213  009C                     	;# 
+   214  009D                     	;# 
+   215  009E                     	;# 
+   216  010C                     	;# 
+   217  0111                     	;# 
+   218  0112                     	;# 
+   219  0115                     	;# 
+   220  0116                     	;# 
+   221  0117                     	;# 
+   222  0118                     	;# 
+   223  0119                     	;# 
+   224  011A                     	;# 
+   225  011B                     	;# 
+   226  011D                     	;# 
+   227  011D                     	;# 
+   228  018C                     	;# 
+   229  0191                     	;# 
+   230  0191                     	;# 
+   231  0192                     	;# 
+   232  0193                     	;# 
+   233  0193                     	;# 
+   234  0193                     	;# 
+   235  0194                     	;# 
+   236  0195                     	;# 
+   237  0196                     	;# 
+   238  0197                     	;# 
+   239  0199                     	;# 
+   240  019A                     	;# 
+   241  019B                     	;# 
+   242  019B                     	;# 
+   243  019B                     	;# 
+   244  019B                     	;# 
+   245  019C                     	;# 
+   246  019C                     	;# 
+   247  019D                     	;# 
+   248  019E                     	;# 
+   249  019F                     	;# 
+   250  020C                     	;# 
+   251  0211                     	;# 
+   252  0211                     	;# 
+   253  0212                     	;# 
+   254  0212                     	;# 
+   255  0213                     	;# 
+   256  0213                     	;# 
+   257  0214                     	;# 
+   258  0214                     	;# 
+   259  0215                     	;# 
+   260  0215                     	;# 
+   261  0215                     	;# 
+   262  0216                     	;# 
+   263  0216                     	;# 
+   264  0217                     	;# 
+   265  0217                     	;# 
+   266  0291                     	;# 
+   267  0291                     	;# 
+   268  0292                     	;# 
+   269  0293                     	;# 
+   270  0294                     	;# 
+   271  0295                     	;# 
+   272  0295                     	;# 
+   273  0296                     	;# 
+   274  0391                     	;# 
+   275  0392                     	;# 
+   276  0393                     	;# 
+   277  039A                     	;# 
+   278  039C                     	;# 
+   279  039D                     	;# 
+   280  039E                     	;# 
+   281  039F                     	;# 
+   282  0FE4                     	;# 
+   283  0FE5                     	;# 
+   284  0FE6                     	;# 
+   285  0FE7                     	;# 
+   286  0FE8                     	;# 
+   287  0FE9                     	;# 
+   288  0FEA                     	;# 
+   289  0FEB                     	;# 
+   290  0FED                     	;# 
+   291  0FEE                     	;# 
+   292  0FEF                     	;# 
+   293                           
+   294                           	psect	idataCOMMON
+   295  0702                     __pidataCOMMON:
+   296                           
+   297                           ;initializer for _ctr2
+   298  0702  3401               	retlw	1
+   299                           
+   300                           ;initializer for _ctr
+   301  0703  3401               	retlw	1
+   302                           
+   303                           	psect	stringtext1
+   304  03BC                     __pstringtext1:
+   305  03BC                     _myarray:
+   306  03BC  34D9               	retlw	217
+   307  03BD  34D3               	retlw	211
+   308  03BE  34D9               	retlw	217
+   309  03BF  34D6               	retlw	214
+   310  03C0  34D0               	retlw	208
+   311  03C1  34CA               	retlw	202
+   312  03C2  34FC               	retlw	252
+   313  03C3  34F9               	retlw	249
+   314  03C4  34FC               	retlw	252
+   315  03C5  34EA               	retlw	234
+   316  03C6  34F0               	retlw	240
+   317  03C7  34F3               	retlw	243
+   318  03C8  34EA               	retlw	234
+   319  03C9  34F3               	retlw	243
+   320  03CA  34EA               	retlw	234
+   321  03CB  34E2               	retlw	226
+   322  03CC  34DF               	retlw	223
+   323  03CD  34D3               	retlw	211
+   324  03CE  34C7               	retlw	199
+   325  03CF  34CD               	retlw	205
+   326  03D0  34C5               	retlw	197
+   327  03D1  34C2               	retlw	194
+   328  03D2  34D3               	retlw	211
+   329  03D3  34DC               	retlw	220
+   330  03D4  34D3               	retlw	211
+   331  03D5  34C7               	retlw	199
+   332  03D6  34C2               	retlw	194
+   333  03D7  34C2               	retlw	194
+   334  03D8  34C7               	retlw	199
+   335  03D9  34CD               	retlw	205
+   336  03DA  34D3               	retlw	211
+   337  03DB  34DF               	retlw	223
+   338  03DC  34DF               	retlw	223
+   339  03DD  34FF               	retlw	255
+   340  03DE  34F9               	retlw	249
+   341  03DF  34F3               	retlw	243
+   342  03E0  34F3               	retlw	243
+   343  03E1  34F9               	retlw	249
+   344  03E2  34F6               	retlw	246
+   345  03E3  34F3               	retlw	243
+   346  03E4  34F3               	retlw	243
+   347  03E5  34EA               	retlw	234
+   348  03E6  34D6               	retlw	214
+   349  03E7  34C5               	retlw	197
+   350  03E8  34C7               	retlw	199
+   351  03E9  34D6               	retlw	214
+   352  03EA  34C5               	retlw	197
+   353  03EB  34D0               	retlw	208
+   354  03EC  34C5               	retlw	197
+   355  03ED  34BF               	retlw	191
+   356  03EE  34C7               	retlw	199
+   357  03EF  34BF               	retlw	191
+   358  03F0  349C               	retlw	156
+   359  03F1  3468               	retlw	104
+   360  03F2  34A8               	retlw	168
+   361  03F3  34D9               	retlw	217
+   362  03F4  34CD               	retlw	205
+   363  03F5  34C7               	retlw	199
+   364  03F6  34D0               	retlw	208
+   365  03F7  34DC               	retlw	220
+   366  03F8  34D3               	retlw	211
+   367  03F9  34CD               	retlw	205
+   368  03FA  34C5               	retlw	197
+   369  03FB  34C7               	retlw	199
+   370  03FC  34D0               	retlw	208
+   371  03FD  34CA               	retlw	202
+   372  03FE  34B6               	retlw	182
+   373  03FF  3479               	retlw	121
+   374  0400  343C               	retlw	60
+   375  0401  3400               	retlw	0
+   376  0402  3411               	retlw	17
+   377  0403  3425               	retlw	37
+   378  0404  3468               	retlw	104
+   379  0405  34A8               	retlw	168
+   380  0406  34D9               	retlw	217
+   381  0407  34D0               	retlw	208
+   382  0408  34C2               	retlw	194
+   383  0409  34C7               	retlw	199
+   384  040A  34D3               	retlw	211
+   385  040B  34DF               	retlw	223
+   386  040C  34FC               	retlw	252
+   387  040D  34F9               	retlw	249
+   388  040E  34FC               	retlw	252
+   389  040F  34F9               	retlw	249
+   390  0410  34F9               	retlw	249
+   391  0411  34F3               	retlw	243
+   392  0412  34F9               	retlw	249
+   393  0413  34F9               	retlw	249
+   394  0414  34FC               	retlw	252
+   395  0415  34EA               	retlw	234
+   396  0416  34EA               	retlw	234
+   397  0417  34F0               	retlw	240
+   398  0418  34F3               	retlw	243
+   399  0419  34EA               	retlw	234
+   400  041A  34E4               	retlw	228
+   401  041B  34F0               	retlw	240
+   402  041C  34F0               	retlw	240
+   403  041D  34EA               	retlw	234
+   404  041E  34E7               	retlw	231
+   405  041F  34DF               	retlw	223
+   406  0420  34FC               	retlw	252
+   407  0421  34F9               	retlw	249
+   408  0422  34F9               	retlw	249
+   409  0423  34FC               	retlw	252
+   410  0424  34FC               	retlw	252
+   411  0425  34F9               	retlw	249
+   412  0426  34F3               	retlw	243
+   413  0427  34F0               	retlw	240
+   414  0428  34ED               	retlw	237
+   415  0429  34E7               	retlw	231
+   416  042A  34E4               	retlw	228
+   417  042B  34F0               	retlw	240
+   418  042C  34F3               	retlw	243
+   419  042D  34F9               	retlw	249
+   420  042E  34F3               	retlw	243
+   421  042F  34F9               	retlw	249
+   422  0430  34FC               	retlw	252
+   423  0431  34F9               	retlw	249
+   424  0432  34F6               	retlw	246
+   425  0433  34F0               	retlw	240
+   426  0434  34EA               	retlw	234
+   427  0435  34DF               	retlw	223
+   428  0436  34E2               	retlw	226
+   429  0437  34DF               	retlw	223
+   430  0438  34E2               	retlw	226
+   431  0439  34E2               	retlw	226
+   432  043A  34D6               	retlw	214
+   433  043B  34C5               	retlw	197
+   434  043C  34C2               	retlw	194
+   435  043D  34C7               	retlw	199
+   436  043E  34D0               	retlw	208
+   437  043F  34C2               	retlw	194
+   438  0440  34D3               	retlw	211
+   439  0441  34DC               	retlw	220
+   440  0442  34E2               	retlw	226
+   441  0443  34E4               	retlw	228
+   442  0444  34E7               	retlw	231
+   443  0445  34DC               	retlw	220
+   444  0446  34E7               	retlw	231
+   445  0447  34E2               	retlw	226
+   446  0448  34DF               	retlw	223
+   447  0449  34D9               	retlw	217
+   448  044A  34CD               	retlw	205
+   449  044B  34D3               	retlw	211
+   450  044C  34E4               	retlw	228
+   451  044D  34F6               	retlw	246
+   452  044E  34F6               	retlw	246
+   453  044F  34F6               	retlw	246
+   454  0450  34F6               	retlw	246
+   455  0451  34ED               	retlw	237
+   456  0452  34E7               	retlw	231
+   457  0453  34F3               	retlw	243
+   458  0454  34EA               	retlw	234
+   459  0455  34D6               	retlw	214
+   460  0456  34DF               	retlw	223
+   461  0457  34EA               	retlw	234
+   462  0458  34E7               	retlw	231
+   463  0459  34EA               	retlw	234
+   464  045A  34D6               	retlw	214
+   465  045B  34DF               	retlw	223
+   466  045C  34FF               	retlw	255
+   467  045D  34F9               	retlw	249
+   468  045E  34F6               	retlw	246
+   469  045F  34F6               	retlw	246
+   470  0460  34F9               	retlw	249
+   471  0461  34F6               	retlw	246
+   472  0462  34ED               	retlw	237
+   473  0463  34F0               	retlw	240
+   474  0464  34F0               	retlw	240
+   475  0465  34E7               	retlw	231
+   476  0466  34F3               	retlw	243
+   477  0467  34F9               	retlw	249
+   478  0468  34FC               	retlw	252
+   479  0469  34F9               	retlw	249
+   480  046A  34F9               	retlw	249
+   481  046B  34F3               	retlw	243
+   482  046C  34F0               	retlw	240
+   483  046D  34F0               	retlw	240
+   484  046E  34F6               	retlw	246
+   485  046F  34F3               	retlw	243
+   486  0470  34F9               	retlw	249
+   487  0471  34F9               	retlw	249
+   488  0472  34F9               	retlw	249
+   489  0473  34FC               	retlw	252
+   490  0474  34F9               	retlw	249
+   491  0475  34F6               	retlw	246
+   492  0476  34F9               	retlw	249
+   493  0477  34FC               	retlw	252
+   494  0478  34FC               	retlw	252
+   495  0479  34EA               	retlw	234
+   496  047A  34F3               	retlw	243
+   497  047B  34F9               	retlw	249
+   498  047C  34F9               	retlw	249
+   499  047D  34FC               	retlw	252
+   500  047E  34F9               	retlw	249
+   501  047F  34F3               	retlw	243
+   502  0480  34F9               	retlw	249
+   503  0481  34F9               	retlw	249
+   504  0482  34F9               	retlw	249
+   505  0483  34F6               	retlw	246
+   506  0484  34ED               	retlw	237
+   507  0485  34E2               	retlw	226
+   508  0486  34DF               	retlw	223
+   509  0487  34EA               	retlw	234
+   510  0488  34F0               	retlw	240
+   511  0489  34F6               	retlw	246
+   512  048A  34F0               	retlw	240
+   513  048B  34ED               	retlw	237
+   514  048C  34E7               	retlw	231
+   515  048D  34E2               	retlw	226
+   516  048E  34E4               	retlw	228
+   517  048F  34E2               	retlw	226
+   518  0490  34EA               	retlw	234
+   519  0491  34F3               	retlw	243
+   520  0492  34F9               	retlw	249
+   521  0493  34F3               	retlw	243
+   522  0494  34EA               	retlw	234
+   523  0495  34D6               	retlw	214
+   524  0496  34DF               	retlw	223
+   525  0497  34A5               	retlw	165
+   526  0498  3468               	retlw	104
+   527  0499  34A8               	retlw	168
+   528  049A  34E7               	retlw	231
+   529  049B  34ED               	retlw	237
+   530  049C  34E2               	retlw	226
+   531  049D  34B6               	retlw	182
+   532  049E  3488               	retlw	136
+   533  049F  344E               	retlw	78
+   534  04A0  3414               	retlw	20
+   535  04A1  3425               	retlw	37
+   536  04A2  3468               	retlw	104
+   537  04A3  34A8               	retlw	168
+   538  04A4  34E7               	retlw	231
+   539  04A5  34ED               	retlw	237
+   540  04A6  34E2               	retlw	226
+   541  04A7  34D6               	retlw	214
+   542  04A8  34D0               	retlw	208
+   543  04A9  34C2               	retlw	194
+   544  04AA  34C7               	retlw	199
+   545  04AB  34CA               	retlw	202
+   546  04AC  34D0               	retlw	208
+   547  04AD  34D9               	retlw	217
+   548  04AE  34D9               	retlw	217
+   549  04AF  34C7               	retlw	199
+   550  04B0  34CA               	retlw	202
+   551  04B1  34B6               	retlw	182
+   552  04B2  3479               	retlw	121
+   553  04B3  343C               	retlw	60
+   554  04B4  3400               	retlw	0
+   555  04B5  3411               	retlw	17
+   556  04B6  3425               	retlw	37
+   557  04B7  3468               	retlw	104
+   558  04B8  34A8               	retlw	168
+   559  04B9  34EA               	retlw	234
+   560  04BA  34EA               	retlw	234
+   561  04BB  34E4               	retlw	228
+   562  04BC                     __end_of_myarray:
+   563                           
+   564                           	psect	stringtext2
+   565  04BC                     __pstringtext2:
+   566  04BC                     _sine:
+   567  04BC  3483               	retlw	131
+   568  04BD  3484               	retlw	132
+   569  04BE  3487               	retlw	135
+   570  04BF  3489               	retlw	137
+   571  04C0  348C               	retlw	140
+   572  04C1  348F               	retlw	143
+   573  04C2  3492               	retlw	146
+   574  04C3  3495               	retlw	149
+   575  04C4  3498               	retlw	152
+   576  04C5  349B               	retlw	155
+   577  04C6  349D               	retlw	157
+   578  04C7  34A0               	retlw	160
+   579  04C8  34A3               	retlw	163
+   580  04C9  34A6               	retlw	166
+   581  04CA  34A8               	retlw	168
+   582  04CB  34AB               	retlw	171
+   583  04CC  34AE               	retlw	174
+   584  04CD  34B0               	retlw	176
+   585  04CE  34B3               	retlw	179
+   586  04CF  34B5               	retlw	181
+   587  04D0  34B8               	retlw	184
+   588  04D1  34BA               	retlw	186
+   589  04D2  34BD               	retlw	189
+   590  04D3  34BF               	retlw	191
+   591  04D4  34C2               	retlw	194
+   592  04D5  34C4               	retlw	196
+   593  04D6  34C6               	retlw	198
+   594  04D7  34C8               	retlw	200
+   595  04D8  34CA               	retlw	202
+   596  04D9  34CD               	retlw	205
+   597  04DA  34CF               	retlw	207
+   598  04DB  34D1               	retlw	209
+   599  04DC  34D3               	retlw	211
+   600  04DD  34D4               	retlw	212
+   601  04DE  34D6               	retlw	214
+   602  04DF  34D8               	retlw	216
+   603  04E0  34DA               	retlw	218
+   604  04E1  34DB               	retlw	219
+   605  04E2  34DD               	retlw	221
+   606  04E3  34DF               	retlw	223
+   607  04E4  34E0               	retlw	224
+   608  04E5  34E2               	retlw	226
+   609  04E6  34E3               	retlw	227
+   610  04E7  34E4               	retlw	228
+   611  04E8  34E5               	retlw	229
+   612  04E9  34E7               	retlw	231
+   613  04EA  34E8               	retlw	232
+   614  04EB  34E9               	retlw	233
+   615  04EC  34EA               	retlw	234
+   616  04ED  34EA               	retlw	234
+   617  04EE  34EB               	retlw	235
+   618  04EF  34EC               	retlw	236
+   619  04F0  34ED               	retlw	237
+   620  04F1  34ED               	retlw	237
+   621  04F2  34EE               	retlw	238
+   622  04F3  34EE               	retlw	238
+   623  04F4  34EF               	retlw	239
+   624  04F5  34EF               	retlw	239
+   625  04F6  34EF               	retlw	239
+   626  04F7  34EF               	retlw	239
+   627  04F8  34F0               	retlw	240
+   628  04F9  34F0               	retlw	240
+   629  04FA  34F0               	retlw	240
+   630  04FB  34EF               	retlw	239
+   631  04FC  34EF               	retlw	239
+   632  04FD  34EF               	retlw	239
+   633  04FE  34EF               	retlw	239
+   634  04FF  34EE               	retlw	238
+   635  0500  34EE               	retlw	238
+   636  0501  34ED               	retlw	237
+   637  0502  34ED               	retlw	237
+   638  0503  34EC               	retlw	236
+   639  0504  34EC               	retlw	236
+   640  0505  34EB               	retlw	235
+   641  0506  34EA               	retlw	234
+   642  0507  34E9               	retlw	233
+   643  0508  34E8               	retlw	232
+   644  0509  34E7               	retlw	231
+   645  050A  34E6               	retlw	230
+   646  050B  34E5               	retlw	229
+   647  050C  34E3               	retlw	227
+   648  050D  34E2               	retlw	226
+   649  050E  34E1               	retlw	225
+   650  050F  34DF               	retlw	223
+   651  0510  34DE               	retlw	222
+   652  0511  34DC               	retlw	220
+   653  0512  34DB               	retlw	219
+   654  0513  34D9               	retlw	217
+   655  0514  34D8               	retlw	216
+   656  0515  34D6               	retlw	214
+   657  0516  34D4               	retlw	212
+   658  0517  34D2               	retlw	210
+   659  0518  34D0               	retlw	208
+   660  0519  34CE               	retlw	206
+   661  051A  34CC               	retlw	204
+   662  051B  34CA               	retlw	202
+   663  051C  34C8               	retlw	200
+   664  051D  34C6               	retlw	198
+   665  051E  34C4               	retlw	196
+   666  051F  34C2               	retlw	194
+   667  0520  34C0               	retlw	192
+   668  0521  34BD               	retlw	189
+   669  0522  34BB               	retlw	187
+   670  0523  34B9               	retlw	185
+   671  0524  34B6               	retlw	182
+   672  0525  34B4               	retlw	180
+   673  0526  34B1               	retlw	177
+   674  0527  34AF               	retlw	175
+   675  0528  34AD               	retlw	173
+   676  0529  34AA               	retlw	170
+   677  052A  34A7               	retlw	167
+   678  052B  34A5               	retlw	165
+   679  052C  34A2               	retlw	162
+   680  052D  34A0               	retlw	160
+   681  052E  349D               	retlw	157
+   682  052F  349A               	retlw	154
+   683  0530  3498               	retlw	152
+   684  0531  3495               	retlw	149
+   685  0532  3492               	retlw	146
+   686  0533  3490               	retlw	144
+   687  0534  348D               	retlw	141
+   688  0535  348A               	retlw	138
+   689  0536  3487               	retlw	135
+   690  0537  3485               	retlw	133
+   691  0538  3482               	retlw	130
+   692  0539  347F               	retlw	127
+   693  053A  347C               	retlw	124
+   694  053B  347A               	retlw	122
+   695  053C  3477               	retlw	119
+   696  053D  3474               	retlw	116
+   697  053E  3471               	retlw	113
+   698  053F  346F               	retlw	111
+   699  0540  346C               	retlw	108
+   700  0541  3469               	retlw	105
+   701  0542  3467               	retlw	103
+   702  0543  3464               	retlw	100
+   703  0544  3461               	retlw	97
+   704  0545  345F               	retlw	95
+   705  0546  345C               	retlw	92
+   706  0547  3459               	retlw	89
+   707  0548  3457               	retlw	87
+   708  0549  3454               	retlw	84
+   709  054A  3452               	retlw	82
+   710  054B  344F               	retlw	79
+   711  054C  344D               	retlw	77
+   712  054D  344A               	retlw	74
+   713  054E  3448               	retlw	72
+   714  054F  3445               	retlw	69
+   715  0550  3443               	retlw	67
+   716  0551  3440               	retlw	64
+   717  0552  343E               	retlw	62
+   718  0553  343C               	retlw	60
+   719  0554  343A               	retlw	58
+   720  0555  3437               	retlw	55
+   721  0556  3435               	retlw	53
+   722  0557  3433               	retlw	51
+   723  0558  3431               	retlw	49
+   724  0559  342F               	retlw	47
+   725  055A  342D               	retlw	45
+   726  055B  342B               	retlw	43
+   727  055C  3429               	retlw	41
+   728  055D  3427               	retlw	39
+   729  055E  3425               	retlw	37
+   730  055F  3424               	retlw	36
+   731  0560  3422               	retlw	34
+   732  0561  3420               	retlw	32
+   733  0562  341F               	retlw	31
+   734  0563  341D               	retlw	29
+   735  0564  341C               	retlw	28
+   736  0565  341A               	retlw	26
+   737  0566  3419               	retlw	25
+   738  0567  3418               	retlw	24
+   739  0568  3416               	retlw	22
+   740  0569  3415               	retlw	21
+   741  056A  3414               	retlw	20
+   742  056B  3413               	retlw	19
+   743  056C  3412               	retlw	18
+   744  056D  3411               	retlw	17
+   745  056E  3410               	retlw	16
+   746  056F  340F               	retlw	15
+   747  0570  340F               	retlw	15
+   748  0571  340E               	retlw	14
+   749  0572  340D               	retlw	13
+   750  0573  340D               	retlw	13
+   751  0574  340C               	retlw	12
+   752  0575  340C               	retlw	12
+   753  0576  340C               	retlw	12
+   754  0577  340B               	retlw	11
+   755  0578  340B               	retlw	11
+   756  0579  340B               	retlw	11
+   757  057A  340B               	retlw	11
+   758  057B  340B               	retlw	11
+   759  057C  340B               	retlw	11
+   760  057D  340B               	retlw	11
+   761  057E  340B               	retlw	11
+   762  057F  340C               	retlw	12
+   763  0580  340C               	retlw	12
+   764  0581  340C               	retlw	12
+   765  0582  340D               	retlw	13
+   766  0583  340E               	retlw	14
+   767  0584  340E               	retlw	14
+   768  0585  340F               	retlw	15
+   769  0586  3410               	retlw	16
+   770  0587  3410               	retlw	16
+   771  0588  3411               	retlw	17
+   772  0589  3412               	retlw	18
+   773  058A  3413               	retlw	19
+   774  058B  3415               	retlw	21
+   775  058C  3416               	retlw	22
+   776  058D  3417               	retlw	23
+   777  058E  3418               	retlw	24
+   778  058F  341A               	retlw	26
+   779  0590  341B               	retlw	27
+   780  0591  341D               	retlw	29
+   781  0592  341E               	retlw	30
+   782  0593  3420               	retlw	32
+   783  0594  3421               	retlw	33
+   784  0595  3423               	retlw	35
+   785  0596  3425               	retlw	37
+   786  0597  3427               	retlw	39
+   787  0598  3429               	retlw	41
+   788  0599  342B               	retlw	43
+   789  059A  342D               	retlw	45
+   790  059B  342F               	retlw	47
+   791  059C  3431               	retlw	49
+   792  059D  3433               	retlw	51
+   793  059E  3435               	retlw	53
+   794  059F  3438               	retlw	56
+   795  05A0  343A               	retlw	58
+   796  05A1  343C               	retlw	60
+   797  05A2  343F               	retlw	63
+   798  05A3  3441               	retlw	65
+   799  05A4  3444               	retlw	68
+   800  05A5  3446               	retlw	70
+   801  05A6  3449               	retlw	73
+   802  05A7  344B               	retlw	75
+   803  05A8  344E               	retlw	78
+   804  05A9  3451               	retlw	81
+   805  05AA  3453               	retlw	83
+   806  05AB  3456               	retlw	86
+   807  05AC  3459               	retlw	89
+   808  05AD  345C               	retlw	92
+   809  05AE  345E               	retlw	94
+   810  05AF  3461               	retlw	97
+   811  05B0  3464               	retlw	100
+   812  05B1  3467               	retlw	103
+   813  05B2  346A               	retlw	106
+   814  05B3  346C               	retlw	108
+   815  05B4  346F               	retlw	111
+   816  05B5  3472               	retlw	114
+   817  05B6  3475               	retlw	117
+   818  05B7  3478               	retlw	120
+   819  05B8  347B               	retlw	123
+   820  05B9  347E               	retlw	126
+   821  05BA  3481               	retlw	129
+   822  05BB  3482               	retlw	130
+   823  05BC                     __end_of_sine:
+   824                           
+   825                           	psect	nvBANK0
+   826  004D                     __pnvBANK0:
+   827  004D                     _PhaseShift:
+   828  004D                     	ds	4
+   829  0011                     _PIR1bits	set	17
+   830  000B                     _INTCONbits	set	11
+   831  000B                     _INTCON	set	11
+   832  001B                     _PR2	set	27
+   833  001C                     _T2CON	set	28
+   834  000C                     _PORTAbits	set	12
+   835  009B                     _ADRES	set	155
+   836  009C                     _ADRESH	set	156
+   837  009B                     _ADRESL	set	155
+   838  009D                     _ADCON0bits	set	157
+   839  009E                     _ADCON1bits	set	158
+   840  009E                     _ADCON1	set	158
+   841  009D                     _ADCON0	set	157
+   842  008C                     _TRISA	set	140
+   843  0099                     _OSCCON	set	153
+   844  0095                     _OPTION_REG	set	149
+   845  011D                     _APFCONbits	set	285
+   846  018C                     _ANSELA	set	396
+   847  0291                     _CCPR1L	set	657
+   848  0293                     _CCP1CON	set	659
+   849                           
+   850                           	psect	cinit
+   851  000F                     start_initialization:	
+   852                           ; #config settings
+   853                           
+   854  000F                     __initialization:
+   855                           
+   856                           ; Initialize objects allocated to COMMON
+   857  000F  3187  2702  3180   	fcall	__pidataCOMMON	;fetch initializer
+   858  0012  00FC               	movwf	__pdataCOMMON& (0+127)
+   859  0013  3187  2703  3180   	fcall	__pidataCOMMON+1	;fetch initializer
+   860  0016  00FD               	movwf	(__pdataCOMMON+1)& (0+127)
+   861                           
+   862                           ; Clear objects allocated to BANK0
+   863  0017  01C4               	clrf	__pbssBANK0& (0+127)
+   864  0018  01C5               	clrf	(__pbssBANK0+1)& (0+127)
+   865  0019  01C6               	clrf	(__pbssBANK0+2)& (0+127)
+   866  001A  01C7               	clrf	(__pbssBANK0+3)& (0+127)
+   867  001B  01C8               	clrf	(__pbssBANK0+4)& (0+127)
+   868  001C  01C9               	clrf	(__pbssBANK0+5)& (0+127)
+   869  001D  01CA               	clrf	(__pbssBANK0+6)& (0+127)
+   870  001E  01CB               	clrf	(__pbssBANK0+7)& (0+127)
+   871  001F  01CC               	clrf	(__pbssBANK0+8)& (0+127)
+   872  0020                     end_of_initialization:	
+   873                           ;End of C runtime variable initialization code
+   874                           
+   875  0020                     __end_of__initialization:
+   876  0020  107E               	bcf	int$flags,0	;clear compiler interrupt flag (level 1)
+   877  0021  0020               	movlb	0
+   878  0022  3180  2824         	ljmp	_main	;jump to C main() function
+   879                           
+   880                           	psect	dataCOMMON
+   881  007C                     __pdataCOMMON:
+   882  007C                     _ctr2:
+   883  007C                     	ds	1
+   884  007D                     _ctr:
+   885  007D                     	ds	1
+   886                           
+   887                           	psect	bssBANK0
+   888  0044                     __pbssBANK0:
+   889  0044                     _PhaseAccum:
+   890  0044                     	ds	4
+   891  0048                     _step4:
+   892  0048                     	ds	1
+   893  0049                     _step3:
+   894  0049                     	ds	1
+   895  004A                     _step2:
+   896  004A                     	ds	1
+   897  004B                     _step1:
+   898  004B                     	ds	1
+   899  004C                     _step:
+   900  004C                     	ds	1
+   901                           
+   902                           	psect	cstackCOMMON
+   903  0070                     __pcstackCOMMON:
+   904  0070                     ?_Init_Main:
+   905  0070                     ??_Init_Main:	
+   906                           ; 1 bytes @ 0x0
+   907                           
+   908  0070                     ?_ISR:	
+   909                           ; 1 bytes @ 0x0
+   910                           
+   911  0070                     ??_ISR:	
+   912                           ; 1 bytes @ 0x0
+   913                           
+   914  0070                     ?_ADCPhaseShift:	
+   915                           ; 1 bytes @ 0x0
+   916                           
+   917  0070                     ??_ADCPhaseShift:	
+   918                           ; 1 bytes @ 0x0
+   919                           
+   920  0070                     ?_main:	
+   921                           ; 1 bytes @ 0x0
+   922                           
+   923  0070                     ?_readADC:	
+   924                           ; 1 bytes @ 0x0
+   925                           
+   926  0070                     ?___almod:	
+   927                           ; 2 bytes @ 0x0
+   928                           
+   929  0070                     ___almod@divisor:	
+   930                           ; 4 bytes @ 0x0
+   931                           
+   932                           
+   933                           ; 4 bytes @ 0x0
+   934  0070                     	ds	2
+   935  0072                     ??_readADC:
+   936                           
+   937                           ; 1 bytes @ 0x2
+   938  0072                     	ds	1
+   939  0073                     readADC@AN_Val:
+   940                           
+   941                           ; 2 bytes @ 0x3
+   942  0073                     	ds	1
+   943  0074                     ___almod@dividend:
+   944                           
+   945                           ; 4 bytes @ 0x4
+   946  0074                     	ds	1
+   947  0075                     readADC@channel:
+   948                           
+   949                           ; 1 bytes @ 0x5
+   950  0075                     	ds	1
+   951  0076                     ?___bmul:
+   952  0076                     ?___wmul:	
+   953                           ; 1 bytes @ 0x6
+   954                           
+   955  0076                     ___bmul@multiplicand:	
+   956                           ; 2 bytes @ 0x6
+   957                           
+   958  0076                     ___wmul@multiplier:	
+   959                           ; 1 bytes @ 0x6
+   960                           
+   961                           
+   962                           ; 2 bytes @ 0x6
+   963  0076                     	ds	1
+   964  0077                     ??___bmul:
+   965                           
+   966                           ; 1 bytes @ 0x7
+   967  0077                     	ds	1
+   968  0078                     ??___almod:
+   969  0078                     ___bmul@product:	
+   970                           ; 1 bytes @ 0x8
+   971                           
+   972  0078                     ___wmul@multiplicand:	
+   973                           ; 1 bytes @ 0x8
+   974                           
+   975                           
+   976                           ; 2 bytes @ 0x8
+   977  0078                     	ds	1
+   978  0079                     ___bmul@multiplier:
+   979  0079                     ___almod@counter:	
+   980                           ; 1 bytes @ 0x9
+   981                           
+   982                           
+   983                           ; 1 bytes @ 0x9
+   984  0079                     	ds	1
+   985  007A                     ??___wmul:
+   986  007A                     ___almod@sign:	
+   987                           ; 1 bytes @ 0xA
+   988                           
+   989  007A                     ___wmul@product:	
+   990                           ; 1 bytes @ 0xA
+   991                           
+   992                           
+   993                           ; 2 bytes @ 0xA
+   994  007A                     	ds	2
+   995  007C                     ??___lmul:
+   996                           
+   997                           	psect	cstackBANK0
+   998  0020                     __pcstackBANK0:	
+   999                           ; 1 bytes @ 0xC
+  1000                           
+  1001  0020                     ?___lmul:
+  1002  0020                     ___lmul@multiplier:	
+  1003                           ; 4 bytes @ 0x0
+  1004                           
+  1005                           
+  1006                           ; 4 bytes @ 0x0
+  1007  0020                     	ds	4
+  1008  0024                     ___lmul@multiplicand:
+  1009                           
+  1010                           ; 4 bytes @ 0x4
+  1011  0024                     	ds	4
+  1012  0028                     ___lmul@product:
+  1013                           
+  1014                           ; 4 bytes @ 0x8
+  1015  0028                     	ds	4
+  1016  002C                     ??_main:
+  1017                           
+  1018                           ; 1 bytes @ 0xC
+  1019  002C                     	ds	16
+  1020  003C                     _main$895:
+  1021                           
+  1022                           ; 4 bytes @ 0x1C
+  1023  003C                     	ds	4
+  1024  0040                     main@ctr2:
+  1025                           
+  1026                           ; 2 bytes @ 0x20
+  1027  0040                     	ds	2
+  1028  0042                     main@ctr:
+  1029                           
+  1030                           ; 2 bytes @ 0x22
+  1031  0042                     	ds	2
+  1032                           
+  1033                           	psect	maintext
+  1034  0024                     __pmaintext:	
+  1035 ;;
+  1036 ;;Main: autosize = 0, tempsize = 16, incstack = 0, save=0
+  1037 ;;
+  1038 ;; *************** function _main *****************
+  1039 ;; Defined at:
+  1040 ;;		line 195 in file "main.c"
+  1041 ;; Parameters:    Size  Location     Type
+  1042 ;;		None
+  1043 ;; Auto vars:     Size  Location     Type
+  1044 ;;  ctr             2   34[BANK0 ] int 
+  1045 ;;  ctr2            2   32[BANK0 ] int 
+  1046 ;; Return value:  Size  Location     Type
+  1047 ;;                  1    wreg      void 
+  1048 ;; Registers used:
+  1049 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1050 ;; Tracked objects:
+  1051 ;;		On entry : B1F/0
+  1052 ;;		On exit  : 0/0
+  1053 ;;		Unchanged: 0/0
+  1054 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1055 ;;      Params:         0       0       0       0
+  1056 ;;      Locals:         0       8       0       0
+  1057 ;;      Temps:          0      16       0       0
+  1058 ;;      Totals:         0      24       0       0
+  1059 ;;Total ram usage:       24 bytes
+  1060 ;; Hardware stack levels required when called: 2
+  1061 ;; This function calls:
+  1062 ;;		_ADCPhaseShift
+  1063 ;;		_Init_Main
+  1064 ;;		___almod
+  1065 ;;		___bmul
+  1066 ;;		___lmul
+  1067 ;;		___wmul
+  1068 ;;		_readADC
+  1069 ;; This function is called by:
+  1070 ;;		Startup code after reset
+  1071 ;; This function uses a non-reentrant model
+  1072 ;;
+  1073                           
+  1074                           
+  1075                           ;psect for function _main
+  1076  0024                     _main:
+  1077  0024                     l992:	
+  1078                           ;incstack = 0
+  1079                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1080                           
+  1081                           
+  1082                           ;main.c: 196:     Init_Main();
+  1083  0024  3186  266B  3180   	fcall	_Init_Main
+  1084  0027                     l90:	
+  1085                           ;main.c: 198:     while (1) {
+  1086                           
+  1087                           
+  1088                           ;main.c: 199:         ADCPhaseShift();
+  1089  0027  3186  26D0  3180   	fcall	_ADCPhaseShift
+  1090  002A                     l91:	
+  1091                           ;main.c: 201:         while (!PIR1bits.TMR2IF);
+  1092                           
+  1093  002A  0020               	movlb	0	; select bank0
+  1094  002B  1C91               	btfss	17,1	;volatile
+  1095  002C  282E               	goto	u701
+  1096  002D  282F               	goto	u700
+  1097  002E                     u701:
+  1098  002E  282A               	goto	l91
+  1099  002F                     u700:
+  1100  002F                     l994:
+  1101                           
+  1102                           ;main.c: 203:         step ^= ADRESL;
+  1103  002F  0021               	movlb	1	; select bank1
+  1104  0030  081B               	movf	27,w	;volatile
+  1105  0031  0020               	movlb	0	; select bank0
+  1106  0032  00AC               	movwf	??_main
+  1107  0033  082C               	movf	??_main,w
+  1108  0034  06CC               	xorwf	_step,f
+  1109                           
+  1110                           ;main.c: 205:         step2 += 1;
+  1111  0035  3001               	movlw	1
+  1112  0036  00AC               	movwf	??_main
+  1113  0037  082C               	movf	??_main,w
+  1114  0038  07CA               	addwf	_step2,f
+  1115                           
+  1116                           ;main.c: 206:         step3 += 3;
+  1117  0039  3003               	movlw	3
+  1118  003A  00AC               	movwf	??_main
+  1119  003B  082C               	movf	??_main,w
+  1120  003C  07C9               	addwf	_step3,f
+  1121                           
+  1122                           ;main.c: 207:         step4 += 6;
+  1123  003D  3006               	movlw	6
+  1124  003E  00AC               	movwf	??_main
+  1125  003F  082C               	movf	??_main,w
+  1126  0040  07C8               	addwf	_step4,f
+  1127  0041                     l996:
+  1128                           
+  1129                           ;main.c: 211:         int ctr2 = (readADC(0) % 128) >> 5;
+  1130  0041  3000               	movlw	0
+  1131  0042  3186  2691  3180   	fcall	_readADC
+  1132  0045  0870               	movf	?_readADC,w
+  1133  0046  0020               	movlb	0	; select bank0
+  1134  0047  00AC               	movwf	??_main
+  1135  0048  0871               	movf	?_readADC+1,w
+  1136  0049  00AD               	movwf	??_main+1
+  1137  004A  3005               	movlw	5
+  1138  004B                     u715:
+  1139  004B  36AD               	lsrf	??_main+1,f
+  1140  004C  0CAC               	rrf	??_main,f
+  1141  004D  0B89               	decfsz	9,f
+  1142  004E  284B               	goto	u715
+  1143  004F  3003               	movlw	3
+  1144  0050  052C               	andwf	??_main,w
+  1145  0051  00C0               	movwf	main@ctr2
+  1146  0052  3000               	movlw	0
+  1147  0053  052D               	andwf	??_main+1,w
+  1148  0054  00C1               	movwf	main@ctr2+1
+  1149  0055                     l998:
+  1150                           
+  1151                           ;main.c: 213:         if (ctr2 == 0) {
+  1152  0055  0840               	movf	main@ctr2,w
+  1153  0056  0441               	iorwf	main@ctr2+1,w
+  1154  0057  1D03               	btfss	3,2
+  1155  0058  285A               	goto	u721
+  1156  0059  285B               	goto	u720
+  1157  005A                     u721:
+  1158  005A  287C               	goto	l1002
+  1159  005B                     u720:
+  1160  005B                     l1000:
+  1161                           
+  1162                           ;main.c: 214:             CCPR1L = (sine[((char *) &PhaseAccum)[3]]) + step + 1;
+  1163  005B  0847               	movf	_PhaseAccum+3,w
+  1164  005C  3EBC               	addlw	low (_sine| (0+32768))
+  1165  005D  0084               	movwf	4
+  1166  005E  3084               	movlw	high (_sine| (0+32768))
+  1167  005F  1803               	skipnc
+  1168  0060  3E01               	addlw	1
+  1169  0061  0085               	movwf	5
+  1170  0062  0800               	movf	0,w	;code access
+  1171  0063  074C               	addwf	_step,w
+  1172  0064  3E01               	addlw	1
+  1173  0065  0025               	movlb	5	; select bank5
+  1174  0066  0091               	movwf	17	;volatile
+  1175                           
+  1176                           ;main.c: 215:             CCP1CON ^= ((sine[step]) & 0x03) << 4;
+  1177  0067  0020               	movlb	0	; select bank0
+  1178  0068  084C               	movf	_step,w
+  1179  0069  3EBC               	addlw	low (_sine| (0+32768))
+  1180  006A  0084               	movwf	4
+  1181  006B  3084               	movlw	high (_sine| (0+32768))
+  1182  006C  1803               	skipnc
+  1183  006D  3E01               	addlw	1
+  1184  006E  0085               	movwf	5
+  1185  006F  0800               	movf	0,w	;code access
+  1186  0070  3903               	andlw	3
+  1187  0071  00AC               	movwf	??_main
+  1188  0072  3003               	movlw	3
+  1189  0073                     u735:
+  1190  0073  35AC               	lslf	??_main,f
+  1191  0074  3EFF               	addlw	-1
+  1192  0075  1D03               	skipz
+  1193  0076  2873               	goto	u735
+  1194  0077  352C               	lslf	??_main,w
+  1195  0078  00AD               	movwf	??_main+1
+  1196  0079  082D               	movf	??_main+1,w
+  1197  007A  0025               	movlb	5	; select bank5
+  1198  007B  0693               	xorwf	19,f	;volatile
+  1199  007C                     l1002:
+  1200                           
+  1201                           ;main.c: 218:         if (ctr2 == 1) {
+  1202  007C  0020               	movlb	0	; select bank0
+  1203  007D  0340               	decf	main@ctr2,w
+  1204  007E  0441               	iorwf	main@ctr2+1,w
+  1205  007F  1D03               	btfss	3,2
+  1206  0080  2882               	goto	u741
+  1207  0081  2883               	goto	u740
+  1208  0082                     u741:
+  1209  0082  2893               	goto	l95
+  1210  0083                     u740:
+  1211  0083                     l1004:
+  1212                           
+  1213                           ;main.c: 219:             CCPR1L = ((char *) &PhaseAccum)[3] >> 2;
+  1214  0083  0847               	movf	_PhaseAccum+3,w
+  1215  0084  00AC               	movwf	??_main
+  1216  0085  3002               	movlw	2
+  1217  0086                     u755:
+  1218  0086  36AC               	lsrf	??_main,f
+  1219  0087  0B89               	decfsz	9,f
+  1220  0088  2886               	goto	u755
+  1221  0089  082C               	movf	??_main,w
+  1222  008A  0025               	movlb	5	; select bank5
+  1223  008B  0091               	movwf	17	;volatile
+  1224                           
+  1225                           ;main.c: 220:             CCP1CON ^= ((char *) &PhaseAccum)[3] & 0x03 << 4;
+  1226  008C  0020               	movlb	0	; select bank0
+  1227  008D  0847               	movf	_PhaseAccum+3,w
+  1228  008E  3930               	andlw	48
+  1229  008F  00AC               	movwf	??_main
+  1230  0090  082C               	movf	??_main,w
+  1231  0091  0025               	movlb	5	; select bank5
+  1232  0092  0693               	xorwf	19,f	;volatile
+  1233  0093                     l95:	
+  1234                           ;main.c: 221:         }
+  1235                           
+  1236                           
+  1237                           ;main.c: 223:         if (ctr2 == 2) {
+  1238  0093  3002               	movlw	2
+  1239  0094  0020               	movlb	0	; select bank0
+  1240  0095  0640               	xorwf	main@ctr2,w
+  1241  0096  0441               	iorwf	main@ctr2+1,w
+  1242  0097  1D03               	btfss	3,2
+  1243  0098  289A               	goto	u761
+  1244  0099  289B               	goto	u760
+  1245  009A                     u761:
+  1246  009A  28C6               	goto	l1010
+  1247  009B                     u760:
+  1248  009B                     l1006:
+  1249                           
+  1250                           ;main.c: 224:             CCPR1L = (sine[ ((char *) &PhaseAccum) [3] & readADC(1)]) >> 2
+      +                          ;
+  1251  009B  3001               	movlw	1
+  1252  009C  3186  2691  3180   	fcall	_readADC
+  1253  009F  0870               	movf	?_readADC,w
+  1254  00A0  0020               	movlb	0	; select bank0
+  1255  00A1  0547               	andwf	_PhaseAccum+3,w
+  1256  00A2  3EBC               	addlw	low (_sine| (0+32768))
+  1257  00A3  0084               	movwf	4
+  1258  00A4  3084               	movlw	high (_sine| (0+32768))
+  1259  00A5  1803               	skipnc
+  1260  00A6  3E01               	addlw	1
+  1261  00A7  0085               	movwf	5
+  1262  00A8  0800               	movf	0,w	;code access
+  1263  00A9  00AC               	movwf	??_main
+  1264  00AA  3002               	movlw	2
+  1265  00AB                     u775:
+  1266  00AB  36AC               	lsrf	??_main,f
+  1267  00AC  0B89               	decfsz	9,f
+  1268  00AD  28AB               	goto	u775
+  1269  00AE  082C               	movf	??_main,w
+  1270  00AF  0025               	movlb	5	; select bank5
+  1271  00B0  0091               	movwf	17	;volatile
+  1272  00B1                     l1008:
+  1273                           
+  1274                           ;main.c: 225:             CCP1CON ^= ((sine[((char *) &PhaseAccum)[3]]) & 0x03) << 4;
+  1275  00B1  0020               	movlb	0	; select bank0
+  1276  00B2  0847               	movf	_PhaseAccum+3,w
+  1277  00B3  3EBC               	addlw	low (_sine| (0+32768))
+  1278  00B4  0084               	movwf	4
+  1279  00B5  3084               	movlw	high (_sine| (0+32768))
+  1280  00B6  1803               	skipnc
+  1281  00B7  3E01               	addlw	1
+  1282  00B8  0085               	movwf	5
+  1283  00B9  0800               	movf	0,w	;code access
+  1284  00BA  3903               	andlw	3
+  1285  00BB  00AC               	movwf	??_main
+  1286  00BC  3003               	movlw	3
+  1287  00BD                     u785:
+  1288  00BD  35AC               	lslf	??_main,f
+  1289  00BE  3EFF               	addlw	-1
+  1290  00BF  1D03               	skipz
+  1291  00C0  28BD               	goto	u785
+  1292  00C1  352C               	lslf	??_main,w
+  1293  00C2  00AD               	movwf	??_main+1
+  1294  00C3  082D               	movf	??_main+1,w
+  1295  00C4  0025               	movlb	5	; select bank5
+  1296  00C5  0693               	xorwf	19,f	;volatile
+  1297  00C6                     l1010:
+  1298                           
+  1299                           ;main.c: 228:         if (ctr2 == 3) {
+  1300  00C6  3003               	movlw	3
+  1301  00C7  0020               	movlb	0	; select bank0
+  1302  00C8  0640               	xorwf	main@ctr2,w
+  1303  00C9  0441               	iorwf	main@ctr2+1,w
+  1304  00CA  1D03               	btfss	3,2
+  1305  00CB  28CD               	goto	u791
+  1306  00CC  28CE               	goto	u790
+  1307  00CD                     u791:
+  1308  00CD  28F3               	goto	l1014
+  1309  00CE                     u790:
+  1310  00CE                     l1012:
+  1311                           
+  1312                           ;main.c: 229:             CCPR1L = (myarray[((char *) &PhaseAccum)[3]]) >> 2;
+  1313  00CE  0847               	movf	_PhaseAccum+3,w
+  1314  00CF  3EBC               	addlw	low (_myarray| (0+32768))
+  1315  00D0  0084               	movwf	4
+  1316  00D1  3083               	movlw	high (_myarray| (0+32768))
+  1317  00D2  1803               	skipnc
+  1318  00D3  3E01               	addlw	1
+  1319  00D4  0085               	movwf	5
+  1320  00D5  0800               	movf	0,w	;code access
+  1321  00D6  00AC               	movwf	??_main
+  1322  00D7  3002               	movlw	2
+  1323  00D8                     u805:
+  1324  00D8  36AC               	lsrf	??_main,f
+  1325  00D9  0B89               	decfsz	9,f
+  1326  00DA  28D8               	goto	u805
+  1327  00DB  082C               	movf	??_main,w
+  1328  00DC  0025               	movlb	5	; select bank5
+  1329  00DD  0091               	movwf	17	;volatile
+  1330                           
+  1331                           ;main.c: 230:             CCP1CON ^= ((myarray[((char *) &PhaseAccum)[3]]) & 0x03) << 4;
+  1332  00DE  0020               	movlb	0	; select bank0
+  1333  00DF  0847               	movf	_PhaseAccum+3,w
+  1334  00E0  3EBC               	addlw	low (_myarray| (0+32768))
+  1335  00E1  0084               	movwf	4
+  1336  00E2  3083               	movlw	high (_myarray| (0+32768))
+  1337  00E3  1803               	skipnc
+  1338  00E4  3E01               	addlw	1
+  1339  00E5  0085               	movwf	5
+  1340  00E6  0800               	movf	0,w	;code access
+  1341  00E7  3903               	andlw	3
+  1342  00E8  00AC               	movwf	??_main
+  1343  00E9  3003               	movlw	3
+  1344  00EA                     u815:
+  1345  00EA  35AC               	lslf	??_main,f
+  1346  00EB  3EFF               	addlw	-1
+  1347  00EC  1D03               	skipz
+  1348  00ED  28EA               	goto	u815
+  1349  00EE  352C               	lslf	??_main,w
+  1350  00EF  00AD               	movwf	??_main+1
+  1351  00F0  082D               	movf	??_main+1,w
+  1352  00F1  0025               	movlb	5	; select bank5
+  1353  00F2  0693               	xorwf	19,f	;volatile
+  1354  00F3                     l1014:
+  1355                           
+  1356                           ;main.c: 235:         int ctr = readADC(0) >> 7;
+  1357  00F3  3000               	movlw	0
+  1358  00F4  3186  2691  3180   	fcall	_readADC
+  1359  00F7  0870               	movf	?_readADC,w
+  1360  00F8  0020               	movlb	0	; select bank0
+  1361  00F9  00AC               	movwf	??_main
+  1362  00FA  0871               	movf	?_readADC+1,w
+  1363  00FB  00AD               	movwf	??_main+1
+  1364  00FC  3007               	movlw	7
+  1365  00FD                     u825:
+  1366  00FD  36AD               	lsrf	??_main+1,f
+  1367  00FE  0CAC               	rrf	??_main,f
+  1368  00FF  0B89               	decfsz	9,f
+  1369  0100  28FD               	goto	u825
+  1370  0101  082C               	movf	??_main,w
+  1371  0102  00C2               	movwf	main@ctr
+  1372  0103  082D               	movf	??_main+1,w
+  1373  0104  00C3               	movwf	main@ctr+1
+  1374  0105                     l1016:
+  1375                           
+  1376                           ;main.c: 238:         if (ctr == 0) {
+  1377  0105  0842               	movf	main@ctr,w
+  1378  0106  0443               	iorwf	main@ctr+1,w
+  1379  0107  1D03               	btfss	3,2
+  1380  0108  290A               	goto	u831
+  1381  0109  290B               	goto	u830
+  1382  010A                     u831:
+  1383  010A  2955               	goto	l1020
+  1384  010B                     u830:
+  1385  010B                     l1018:
+  1386                           
+  1387                           ;main.c: 239:             PhaseAccum = PhaseAccum + ((PhaseShift * sine[readADC(1)]) + 1
+      +                          );
+  1388  010B  3001               	movlw	1
+  1389  010C  00AC               	movwf	??_main
+  1390  010D  3000               	movlw	0
+  1391  010E  00AD               	movwf	??_main+1
+  1392  010F  3000               	movlw	0
+  1393  0110  00AE               	movwf	??_main+2
+  1394  0111  3000               	movlw	0
+  1395  0112  00AF               	movwf	??_main+3
+  1396  0113  3001               	movlw	1
+  1397  0114  3186  2691  3180   	fcall	_readADC
+  1398  0117  0871               	movf	?_readADC+1,w
+  1399  0118  0085               	movwf	5
+  1400  0119  0870               	movf	?_readADC,w
+  1401  011A  0084               	movwf	4
+  1402  011B  30BC               	movlw	low (_sine| (0+32768))
+  1403  011C  0784               	addwf	4,f
+  1404  011D  3084               	movlw	high (_sine| (0+32768))
+  1405  011E  3D85               	addwfc	5,f
+  1406  011F  0800               	movf	0,w	;code access
+  1407  0120  0020               	movlb	0	; select bank0
+  1408  0121  00B0               	movwf	??_main+4
+  1409  0122  01B1               	clrf	??_main+5
+  1410  0123  01B2               	clrf	??_main+6
+  1411  0124  01B3               	clrf	??_main+7
+  1412  0125  0833               	movf	??_main+7,w
+  1413  0126  00A3               	movwf	___lmul@multiplier+3
+  1414  0127  0832               	movf	??_main+6,w
+  1415  0128  00A2               	movwf	___lmul@multiplier+2
+  1416  0129  0831               	movf	??_main+5,w
+  1417  012A  00A1               	movwf	___lmul@multiplier+1
+  1418  012B  0830               	movf	??_main+4,w
+  1419  012C  00A0               	movwf	___lmul@multiplier
+  1420  012D  0850               	movf	_PhaseShift+3,w
+  1421  012E  00A7               	movwf	___lmul@multiplicand+3
+  1422  012F  084F               	movf	_PhaseShift+2,w
+  1423  0130  00A6               	movwf	___lmul@multiplicand+2
+  1424  0131  084E               	movf	_PhaseShift+1,w
+  1425  0132  00A5               	movwf	___lmul@multiplicand+1
+  1426  0133  084D               	movf	_PhaseShift,w
+  1427  0134  00A4               	movwf	___lmul@multiplicand
+  1428  0135  3186  2637  3180   	fcall	___lmul
+  1429  0138  0020               	movlb	0	; select bank0
+  1430  0139  0820               	movf	?___lmul,w
+  1431  013A  0744               	addwf	_PhaseAccum,w
+  1432  013B  00B4               	movwf	??_main+8
+  1433  013C  0821               	movf	?___lmul+1,w
+  1434  013D  3D45               	addwfc	_PhaseAccum+1,w
+  1435  013E  00B5               	movwf	??_main+9
+  1436  013F  0822               	movf	?___lmul+2,w
+  1437  0140  3D46               	addwfc	_PhaseAccum+2,w
+  1438  0141  00B6               	movwf	??_main+10
+  1439  0142  0823               	movf	?___lmul+3,w
+  1440  0143  3D47               	addwfc	_PhaseAccum+3,w
+  1441  0144  00B7               	movwf	??_main+11
+  1442  0145  0834               	movf	??_main+8,w
+  1443  0146  07AC               	addwf	??_main,f
+  1444  0147  0835               	movf	??_main+9,w
+  1445  0148  3DAD               	addwfc	??_main+1,f
+  1446  0149  0836               	movf	??_main+10,w
+  1447  014A  3DAE               	addwfc	??_main+2,f
+  1448  014B  0837               	movf	??_main+11,w
+  1449  014C  3DAF               	addwfc	??_main+3,f
+  1450  014D  082F               	movf	??_main+3,w
+  1451  014E  00C7               	movwf	_PhaseAccum+3
+  1452  014F  082E               	movf	??_main+2,w
+  1453  0150  00C6               	movwf	_PhaseAccum+2
+  1454  0151  082D               	movf	??_main+1,w
+  1455  0152  00C5               	movwf	_PhaseAccum+1
+  1456  0153  082C               	movf	??_main,w
+  1457  0154  00C4               	movwf	_PhaseAccum
+  1458  0155                     l1020:
+  1459                           
+  1460                           ;main.c: 242:         if (ctr == 1) {
+  1461  0155  0342               	decf	main@ctr,w
+  1462  0156  0443               	iorwf	main@ctr+1,w
+  1463  0157  1D03               	btfss	3,2
+  1464  0158  295A               	goto	u841
+  1465  0159  295B               	goto	u840
+  1466  015A                     u841:
+  1467  015A  29B5               	goto	l1024
+  1468  015B                     u840:
+  1469  015B                     l1022:
+  1470                           
+  1471                           ;main.c: 243:             PhaseAccum = PhaseAccum + (((PhaseShift << readADC(1)) * sine[
+      +                          step2]) + 1);
+  1472  015B  3001               	movlw	1
+  1473  015C  00AC               	movwf	??_main
+  1474  015D  3000               	movlw	0
+  1475  015E  00AD               	movwf	??_main+1
+  1476  015F  3000               	movlw	0
+  1477  0160  00AE               	movwf	??_main+2
+  1478  0161  3000               	movlw	0
+  1479  0162  00AF               	movwf	??_main+3
+  1480  0163  084D               	movf	_PhaseShift,w
+  1481  0164  00B0               	movwf	??_main+4
+  1482  0165  084E               	movf	_PhaseShift+1,w
+  1483  0166  00B1               	movwf	??_main+5
+  1484  0167  084F               	movf	_PhaseShift+2,w
+  1485  0168  00B2               	movwf	??_main+6
+  1486  0169  0850               	movf	_PhaseShift+3,w
+  1487  016A  00B3               	movwf	??_main+7
+  1488  016B  3001               	movlw	1
+  1489  016C  3186  2691  3180   	fcall	_readADC
+  1490  016F  0870               	movf	?_readADC,w
+  1491  0170  0A89               	incf	9,f
+  1492  0171  0020               	movlb	0	; select bank0
+  1493  0172  2977               	goto	u850
+  1494  0173                     u855:
+  1495  0173  35B0               	lslf	??_main+4,f
+  1496  0174  0DB1               	rlf	??_main+5,f
+  1497  0175  0DB2               	rlf	??_main+6,f
+  1498  0176  0DB3               	rlf	??_main+7,f
+  1499  0177                     u850:
+  1500  0177  0B89               	decfsz	9,f
+  1501  0178  2973               	goto	u855
+  1502  0179  0833               	movf	??_main+7,w
+  1503  017A  00A3               	movwf	___lmul@multiplier+3
+  1504  017B  0832               	movf	??_main+6,w
+  1505  017C  00A2               	movwf	___lmul@multiplier+2
+  1506  017D  0831               	movf	??_main+5,w
+  1507  017E  00A1               	movwf	___lmul@multiplier+1
+  1508  017F  0830               	movf	??_main+4,w
+  1509  0180  00A0               	movwf	___lmul@multiplier
+  1510  0181  084A               	movf	_step2,w
+  1511  0182  3EBC               	addlw	low (_sine| (0+32768))
+  1512  0183  0084               	movwf	4
+  1513  0184  3084               	movlw	high (_sine| (0+32768))
+  1514  0185  1803               	skipnc
+  1515  0186  3E01               	addlw	1
+  1516  0187  0085               	movwf	5
+  1517  0188  0800               	movf	0,w	;code access
+  1518  0189  00B4               	movwf	??_main+8
+  1519  018A  01B5               	clrf	??_main+9
+  1520  018B  01B6               	clrf	??_main+10
+  1521  018C  01B7               	clrf	??_main+11
+  1522  018D  0837               	movf	??_main+11,w
+  1523  018E  00A7               	movwf	___lmul@multiplicand+3
+  1524  018F  0836               	movf	??_main+10,w
+  1525  0190  00A6               	movwf	___lmul@multiplicand+2
+  1526  0191  0835               	movf	??_main+9,w
+  1527  0192  00A5               	movwf	___lmul@multiplicand+1
+  1528  0193  0834               	movf	??_main+8,w
+  1529  0194  00A4               	movwf	___lmul@multiplicand
+  1530  0195  3186  2637  3180   	fcall	___lmul
+  1531  0198  0020               	movlb	0	; select bank0
+  1532  0199  0820               	movf	?___lmul,w
+  1533  019A  0744               	addwf	_PhaseAccum,w
+  1534  019B  00B8               	movwf	??_main+12
+  1535  019C  0821               	movf	?___lmul+1,w
+  1536  019D  3D45               	addwfc	_PhaseAccum+1,w
+  1537  019E  00B9               	movwf	??_main+13
+  1538  019F  0822               	movf	?___lmul+2,w
+  1539  01A0  3D46               	addwfc	_PhaseAccum+2,w
+  1540  01A1  00BA               	movwf	??_main+14
+  1541  01A2  0823               	movf	?___lmul+3,w
+  1542  01A3  3D47               	addwfc	_PhaseAccum+3,w
+  1543  01A4  00BB               	movwf	??_main+15
+  1544  01A5  0838               	movf	??_main+12,w
+  1545  01A6  07AC               	addwf	??_main,f
+  1546  01A7  0839               	movf	??_main+13,w
+  1547  01A8  3DAD               	addwfc	??_main+1,f
+  1548  01A9  083A               	movf	??_main+14,w
+  1549  01AA  3DAE               	addwfc	??_main+2,f
+  1550  01AB  083B               	movf	??_main+15,w
+  1551  01AC  3DAF               	addwfc	??_main+3,f
+  1552  01AD  082F               	movf	??_main+3,w
+  1553  01AE  00C7               	movwf	_PhaseAccum+3
+  1554  01AF  082E               	movf	??_main+2,w
+  1555  01B0  00C6               	movwf	_PhaseAccum+2
+  1556  01B1  082D               	movf	??_main+1,w
+  1557  01B2  00C5               	movwf	_PhaseAccum+1
+  1558  01B3  082C               	movf	??_main,w
+  1559  01B4  00C4               	movwf	_PhaseAccum
+  1560  01B5                     l1024:
+  1561                           
+  1562                           ;main.c: 247:         if (ctr == 2) {
+  1563  01B5  3002               	movlw	2
+  1564  01B6  0642               	xorwf	main@ctr,w
+  1565  01B7  0443               	iorwf	main@ctr+1,w
+  1566  01B8  1D03               	btfss	3,2
+  1567  01B9  29BB               	goto	u861
+  1568  01BA  29BC               	goto	u860
+  1569  01BB                     u861:
+  1570  01BB  2A09               	goto	l1028
+  1571  01BC                     u860:
+  1572  01BC                     l1026:
+  1573                           
+  1574                           ;main.c: 248:             PhaseAccum = ((PhaseShift * sine[ADRESL]) + PhaseShift + readA
+      +                          DC(1));
+  1575  01BC  084D               	movf	_PhaseShift,w
+  1576  01BD  00AC               	movwf	??_main
+  1577  01BE  084E               	movf	_PhaseShift+1,w
+  1578  01BF  00AD               	movwf	??_main+1
+  1579  01C0  084F               	movf	_PhaseShift+2,w
+  1580  01C1  00AE               	movwf	??_main+2
+  1581  01C2  0850               	movf	_PhaseShift+3,w
+  1582  01C3  00AF               	movwf	??_main+3
+  1583  01C4  3001               	movlw	1
+  1584  01C5  3186  2691  3180   	fcall	_readADC
+  1585  01C8  0870               	movf	?_readADC,w
+  1586  01C9  0020               	movlb	0	; select bank0
+  1587  01CA  00B0               	movwf	??_main+4
+  1588  01CB  0871               	movf	?_readADC+1,w
+  1589  01CC  00B1               	movwf	??_main+5
+  1590  01CD  01B2               	clrf	??_main+6
+  1591  01CE  01B3               	clrf	??_main+7
+  1592  01CF  0021               	movlb	1	; select bank1
+  1593  01D0  081B               	movf	27,w	;volatile
+  1594  01D1  3EBC               	addlw	low (_sine| (0+32768))
+  1595  01D2  0084               	movwf	4
+  1596  01D3  3084               	movlw	high (_sine| (0+32768))
+  1597  01D4  1803               	skipnc
+  1598  01D5  3E01               	addlw	1
+  1599  01D6  0085               	movwf	5
+  1600  01D7  0800               	movf	0,w	;code access
+  1601  01D8  0020               	movlb	0	; select bank0
+  1602  01D9  00B4               	movwf	??_main+8
+  1603  01DA  01B5               	clrf	??_main+9
+  1604  01DB  01B6               	clrf	??_main+10
+  1605  01DC  01B7               	clrf	??_main+11
+  1606  01DD  0837               	movf	??_main+11,w
+  1607  01DE  00A3               	movwf	___lmul@multiplier+3
+  1608  01DF  0836               	movf	??_main+10,w
+  1609  01E0  00A2               	movwf	___lmul@multiplier+2
+  1610  01E1  0835               	movf	??_main+9,w
+  1611  01E2  00A1               	movwf	___lmul@multiplier+1
+  1612  01E3  0834               	movf	??_main+8,w
+  1613  01E4  00A0               	movwf	___lmul@multiplier
+  1614  01E5  0850               	movf	_PhaseShift+3,w
+  1615  01E6  00A7               	movwf	___lmul@multiplicand+3
+  1616  01E7  084F               	movf	_PhaseShift+2,w
+  1617  01E8  00A6               	movwf	___lmul@multiplicand+2
+  1618  01E9  084E               	movf	_PhaseShift+1,w
+  1619  01EA  00A5               	movwf	___lmul@multiplicand+1
+  1620  01EB  084D               	movf	_PhaseShift,w
+  1621  01EC  00A4               	movwf	___lmul@multiplicand
+  1622  01ED  3186  2637  3180   	fcall	___lmul
+  1623  01F0  0020               	movlb	0	; select bank0
+  1624  01F1  0820               	movf	?___lmul,w
+  1625  01F2  07B0               	addwf	??_main+4,f
+  1626  01F3  0821               	movf	?___lmul+1,w
+  1627  01F4  3DB1               	addwfc	??_main+5,f
+  1628  01F5  0822               	movf	?___lmul+2,w
+  1629  01F6  3DB2               	addwfc	??_main+6,f
+  1630  01F7  0823               	movf	?___lmul+3,w
+  1631  01F8  3DB3               	addwfc	??_main+7,f
+  1632  01F9  0830               	movf	??_main+4,w
+  1633  01FA  07AC               	addwf	??_main,f
+  1634  01FB  0831               	movf	??_main+5,w
+  1635  01FC  3DAD               	addwfc	??_main+1,f
+  1636  01FD  0832               	movf	??_main+6,w
+  1637  01FE  3DAE               	addwfc	??_main+2,f
+  1638  01FF  0833               	movf	??_main+7,w
+  1639  0200  3DAF               	addwfc	??_main+3,f
+  1640  0201  082F               	movf	??_main+3,w
+  1641  0202  00C7               	movwf	_PhaseAccum+3
+  1642  0203  082E               	movf	??_main+2,w
+  1643  0204  00C6               	movwf	_PhaseAccum+2
+  1644  0205  082D               	movf	??_main+1,w
+  1645  0206  00C5               	movwf	_PhaseAccum+1
+  1646  0207  082C               	movf	??_main,w
+  1647  0208  00C4               	movwf	_PhaseAccum
+  1648  0209                     l1028:
+  1649                           
+  1650                           ;main.c: 251:         if (ctr == 3) {
+  1651  0209  3003               	movlw	3
+  1652  020A  0642               	xorwf	main@ctr,w
+  1653  020B  0443               	iorwf	main@ctr+1,w
+  1654  020C  1D03               	btfss	3,2
+  1655  020D  2A0F               	goto	u871
+  1656  020E  2A10               	goto	u870
+  1657  020F                     u871:
+  1658  020F  2A72               	goto	l1032
+  1659  0210                     u870:
+  1660  0210                     l1030:
+  1661                           
+  1662                           ;main.c: 252:             PhaseAccum = PhaseAccum % (PhaseAccum + step3) + (((PhaseShift
+      +                           * sine[step3 >> readADC(1)])));
+  1663  0210  0849               	movf	_step3,w
+  1664  0211  00AC               	movwf	??_main
+  1665  0212  3001               	movlw	1
+  1666  0213  3186  2691  3180   	fcall	_readADC
+  1667  0216  0870               	movf	?_readADC,w
+  1668  0217  0A89               	incf	9,f
+  1669  0218  0020               	movlb	0	; select bank0
+  1670  0219  2A1B               	goto	u884
+  1671  021A                     u885:
+  1672  021A  36AC               	lsrf	??_main,f
+  1673  021B                     u884:
+  1674  021B  0B89               	decfsz	9,f
+  1675  021C  2A1A               	goto	u885
+  1676  021D  082C               	movf	??_main,w
+  1677  021E  3EBC               	addlw	low (_sine| (0+32768))
+  1678  021F  0084               	movwf	4
+  1679  0220  3084               	movlw	high (_sine| (0+32768))
+  1680  0221  1803               	skipnc
+  1681  0222  3E01               	addlw	1
+  1682  0223  0085               	movwf	5
+  1683  0224  0800               	movf	0,w	;code access
+  1684  0225  00AD               	movwf	??_main+1
+  1685  0226  01AE               	clrf	??_main+2
+  1686  0227  01AF               	clrf	??_main+3
+  1687  0228  01B0               	clrf	??_main+4
+  1688  0229  0830               	movf	??_main+4,w
+  1689  022A  00A3               	movwf	___lmul@multiplier+3
+  1690  022B  082F               	movf	??_main+3,w
+  1691  022C  00A2               	movwf	___lmul@multiplier+2
+  1692  022D  082E               	movf	??_main+2,w
+  1693  022E  00A1               	movwf	___lmul@multiplier+1
+  1694  022F  082D               	movf	??_main+1,w
+  1695  0230  00A0               	movwf	___lmul@multiplier
+  1696  0231  0850               	movf	_PhaseShift+3,w
+  1697  0232  00A7               	movwf	___lmul@multiplicand+3
+  1698  0233  084F               	movf	_PhaseShift+2,w
+  1699  0234  00A6               	movwf	___lmul@multiplicand+2
+  1700  0235  084E               	movf	_PhaseShift+1,w
+  1701  0236  00A5               	movwf	___lmul@multiplicand+1
+  1702  0237  084D               	movf	_PhaseShift,w
+  1703  0238  00A4               	movwf	___lmul@multiplicand
+  1704  0239  3186  2637  3180   	fcall	___lmul
+  1705  023C  0020               	movlb	0	; select bank0
+  1706  023D  0820               	movf	?___lmul,w
+  1707  023E  00B1               	movwf	??_main+5
+  1708  023F  0821               	movf	?___lmul+1,w
+  1709  0240  00B2               	movwf	??_main+6
+  1710  0241  0822               	movf	?___lmul+2,w
+  1711  0242  00B3               	movwf	??_main+7
+  1712  0243  0823               	movf	?___lmul+3,w
+  1713  0244  00B4               	movwf	??_main+8
+  1714  0245  0849               	movf	_step3,w
+  1715  0246  0744               	addwf	_PhaseAccum,w
+  1716  0247  00F0               	movwf	___almod@divisor
+  1717  0248  0845               	movf	_PhaseAccum+1,w
+  1718  0249  1803               	skipnc
+  1719  024A  0F45               	incfsz	_PhaseAccum+1,w
+  1720  024B  1003               	clrc
+  1721  024C  00F1               	movwf	___almod@divisor+1
+  1722  024D  0846               	movf	_PhaseAccum+2,w
+  1723  024E  1803               	skipnc
+  1724  024F  0F46               	incfsz	_PhaseAccum+2,w
+  1725  0250  1003               	clrc
+  1726  0251  00F2               	movwf	___almod@divisor+2
+  1727  0252  0847               	movf	_PhaseAccum+3,w
+  1728  0253  1803               	skipnc
+  1729  0254  0A47               	incf	_PhaseAccum+3,w
+  1730  0255  00F3               	movwf	___almod@divisor+3
+  1731  0256  0847               	movf	_PhaseAccum+3,w
+  1732  0257  00F7               	movwf	___almod@dividend+3
+  1733  0258  0846               	movf	_PhaseAccum+2,w
+  1734  0259  00F6               	movwf	___almod@dividend+2
+  1735  025A  0845               	movf	_PhaseAccum+1,w
+  1736  025B  00F5               	movwf	___almod@dividend+1
+  1737  025C  0844               	movf	_PhaseAccum,w
+  1738  025D  00F4               	movwf	___almod@dividend
+  1739  025E  3185  25BC  3180   	fcall	___almod
+  1740  0261  0870               	movf	?___almod,w
+  1741  0262  0020               	movlb	0	; select bank0
+  1742  0263  07B1               	addwf	??_main+5,f
+  1743  0264  0871               	movf	?___almod+1,w
+  1744  0265  3DB2               	addwfc	??_main+6,f
+  1745  0266  0872               	movf	?___almod+2,w
+  1746  0267  3DB3               	addwfc	??_main+7,f
+  1747  0268  0873               	movf	?___almod+3,w
+  1748  0269  3DB4               	addwfc	??_main+8,f
+  1749  026A  0834               	movf	??_main+8,w
+  1750  026B  00C7               	movwf	_PhaseAccum+3
+  1751  026C  0833               	movf	??_main+7,w
+  1752  026D  00C6               	movwf	_PhaseAccum+2
+  1753  026E  0832               	movf	??_main+6,w
+  1754  026F  00C5               	movwf	_PhaseAccum+1
+  1755  0270  0831               	movf	??_main+5,w
+  1756  0271  00C4               	movwf	_PhaseAccum
+  1757  0272                     l1032:
+  1758                           
+  1759                           ;main.c: 256:         if (ctr == 4) {
+  1760  0272  3004               	movlw	4
+  1761  0273  0642               	xorwf	main@ctr,w
+  1762  0274  0443               	iorwf	main@ctr+1,w
+  1763  0275  1D03               	btfss	3,2
+  1764  0276  2A78               	goto	u891
+  1765  0277  2A79               	goto	u890
+  1766  0278                     u891:
+  1767  0278  2AB0               	goto	l102
+  1768  0279                     u890:
+  1769  0279                     l1034:
+  1770                           
+  1771                           ;main.c: 257:             PhaseAccum = PhaseAccum + ((PhaseShift << 6) + 1);
+  1772  0279  3001               	movlw	1
+  1773  027A  00AC               	movwf	??_main
+  1774  027B  3000               	movlw	0
+  1775  027C  00AD               	movwf	??_main+1
+  1776  027D  3000               	movlw	0
+  1777  027E  00AE               	movwf	??_main+2
+  1778  027F  3000               	movlw	0
+  1779  0280  00AF               	movwf	??_main+3
+  1780  0281  0844               	movf	_PhaseAccum,w
+  1781  0282  00B0               	movwf	??_main+4
+  1782  0283  0845               	movf	_PhaseAccum+1,w
+  1783  0284  00B1               	movwf	??_main+5
+  1784  0285  0846               	movf	_PhaseAccum+2,w
+  1785  0286  00B2               	movwf	??_main+6
+  1786  0287  0847               	movf	_PhaseAccum+3,w
+  1787  0288  00B3               	movwf	??_main+7
+  1788  0289  084D               	movf	_PhaseShift,w
+  1789  028A  00B4               	movwf	??_main+8
+  1790  028B  084E               	movf	_PhaseShift+1,w
+  1791  028C  00B5               	movwf	??_main+9
+  1792  028D  084F               	movf	_PhaseShift+2,w
+  1793  028E  00B6               	movwf	??_main+10
+  1794  028F  0850               	movf	_PhaseShift+3,w
+  1795  0290  00B7               	movwf	??_main+11
+  1796  0291  3006               	movlw	6
+  1797  0292                     u905:
+  1798  0292  35B4               	lslf	??_main+8,f
+  1799  0293  0DB5               	rlf	??_main+9,f
+  1800  0294  0DB6               	rlf	??_main+10,f
+  1801  0295  0DB7               	rlf	??_main+11,f
+  1802  0296                     u900:
+  1803  0296  0B89               	decfsz	9,f
+  1804  0297  2A92               	goto	u905
+  1805  0298  0834               	movf	??_main+8,w
+  1806  0299  07B0               	addwf	??_main+4,f
+  1807  029A  0835               	movf	??_main+9,w
+  1808  029B  3DB1               	addwfc	??_main+5,f
+  1809  029C  0836               	movf	??_main+10,w
+  1810  029D  3DB2               	addwfc	??_main+6,f
+  1811  029E  0837               	movf	??_main+11,w
+  1812  029F  3DB3               	addwfc	??_main+7,f
+  1813  02A0  0830               	movf	??_main+4,w
+  1814  02A1  07AC               	addwf	??_main,f
+  1815  02A2  0831               	movf	??_main+5,w
+  1816  02A3  3DAD               	addwfc	??_main+1,f
+  1817  02A4  0832               	movf	??_main+6,w
+  1818  02A5  3DAE               	addwfc	??_main+2,f
+  1819  02A6  0833               	movf	??_main+7,w
+  1820  02A7  3DAF               	addwfc	??_main+3,f
+  1821  02A8  082F               	movf	??_main+3,w
+  1822  02A9  00C7               	movwf	_PhaseAccum+3
+  1823  02AA  082E               	movf	??_main+2,w
+  1824  02AB  00C6               	movwf	_PhaseAccum+2
+  1825  02AC  082D               	movf	??_main+1,w
+  1826  02AD  00C5               	movwf	_PhaseAccum+1
+  1827  02AE  082C               	movf	??_main,w
+  1828  02AF  00C4               	movwf	_PhaseAccum
+  1829  02B0                     l102:	
+  1830                           ;main.c: 258:         }
+  1831                           
+  1832                           
+  1833                           ;main.c: 260:         if (ctr == 5) {
+  1834  02B0  3005               	movlw	5
+  1835  02B1  0642               	xorwf	main@ctr,w
+  1836  02B2  0443               	iorwf	main@ctr+1,w
+  1837  02B3  1D03               	btfss	3,2
+  1838  02B4  2AB6               	goto	u911
+  1839  02B5  2AB7               	goto	u910
+  1840  02B6                     u911:
+  1841  02B6  2B09               	goto	l1040
+  1842  02B7                     u910:
+  1843  02B7                     l1036:
+  1844                           
+  1845                           ;main.c: 261:             PhaseAccum = ((PhaseShift * sine[ADRESL]) + PhaseShift)*2232;
+  1846  02B7  0021               	movlb	1	; select bank1
+  1847  02B8  081B               	movf	27,w	;volatile
+  1848  02B9  3EBC               	addlw	low (_sine| (0+32768))
+  1849  02BA  0084               	movwf	4
+  1850  02BB  3084               	movlw	high (_sine| (0+32768))
+  1851  02BC  1803               	skipnc
+  1852  02BD  3E01               	addlw	1
+  1853  02BE  0085               	movwf	5
+  1854  02BF  0800               	movf	0,w	;code access
+  1855  02C0  0020               	movlb	0	; select bank0
+  1856  02C1  00AC               	movwf	??_main
+  1857  02C2  01AD               	clrf	??_main+1
+  1858  02C3  01AE               	clrf	??_main+2
+  1859  02C4  01AF               	clrf	??_main+3
+  1860  02C5  082F               	movf	??_main+3,w
+  1861  02C6  00A3               	movwf	___lmul@multiplier+3
+  1862  02C7  082E               	movf	??_main+2,w
+  1863  02C8  00A2               	movwf	___lmul@multiplier+2
+  1864  02C9  082D               	movf	??_main+1,w
+  1865  02CA  00A1               	movwf	___lmul@multiplier+1
+  1866  02CB  082C               	movf	??_main,w
+  1867  02CC  00A0               	movwf	___lmul@multiplier
+  1868  02CD  0850               	movf	_PhaseShift+3,w
+  1869  02CE  00A7               	movwf	___lmul@multiplicand+3
+  1870  02CF  084F               	movf	_PhaseShift+2,w
+  1871  02D0  00A6               	movwf	___lmul@multiplicand+2
+  1872  02D1  084E               	movf	_PhaseShift+1,w
+  1873  02D2  00A5               	movwf	___lmul@multiplicand+1
+  1874  02D3  084D               	movf	_PhaseShift,w
+  1875  02D4  00A4               	movwf	___lmul@multiplicand
+  1876  02D5  3186  2637  3180   	fcall	___lmul
+  1877  02D8  0020               	movlb	0	; select bank0
+  1878  02D9  0820               	movf	?___lmul,w
+  1879  02DA  074D               	addwf	_PhaseShift,w
+  1880  02DB  00B0               	movwf	??_main+4
+  1881  02DC  0821               	movf	?___lmul+1,w
+  1882  02DD  3D4E               	addwfc	_PhaseShift+1,w
+  1883  02DE  00B1               	movwf	??_main+5
+  1884  02DF  0822               	movf	?___lmul+2,w
+  1885  02E0  3D4F               	addwfc	_PhaseShift+2,w
+  1886  02E1  00B2               	movwf	??_main+6
+  1887  02E2  0823               	movf	?___lmul+3,w
+  1888  02E3  3D50               	addwfc	_PhaseShift+3,w
+  1889  02E4  00B3               	movwf	??_main+7
+  1890  02E5  0833               	movf	??_main+7,w
+  1891  02E6  00BF               	movwf	_main$895+3
+  1892  02E7  0832               	movf	??_main+6,w
+  1893  02E8  00BE               	movwf	_main$895+2
+  1894  02E9  0831               	movf	??_main+5,w
+  1895  02EA  00BD               	movwf	_main$895+1
+  1896  02EB  0830               	movf	??_main+4,w
+  1897  02EC  00BC               	movwf	_main$895
+  1898  02ED                     l1038:
+  1899                           
+  1900                           ;main.c: 261:             PhaseAccum = ((PhaseShift * sine[ADRESL]) + PhaseShift)*2232;
+  1901  02ED  083F               	movf	_main$895+3,w
+  1902  02EE  00A3               	movwf	___lmul@multiplier+3
+  1903  02EF  083E               	movf	_main$895+2,w
+  1904  02F0  00A2               	movwf	___lmul@multiplier+2
+  1905  02F1  083D               	movf	_main$895+1,w
+  1906  02F2  00A1               	movwf	___lmul@multiplier+1
+  1907  02F3  083C               	movf	_main$895,w
+  1908  02F4  00A0               	movwf	___lmul@multiplier
+  1909  02F5  3000               	movlw	0
+  1910  02F6  00A7               	movwf	___lmul@multiplicand+3
+  1911  02F7  3000               	movlw	0
+  1912  02F8  00A6               	movwf	___lmul@multiplicand+2
+  1913  02F9  3008               	movlw	8
+  1914  02FA  00A5               	movwf	___lmul@multiplicand+1
+  1915  02FB  30B8               	movlw	184
+  1916  02FC  00A4               	movwf	___lmul@multiplicand
+  1917  02FD  3186  2637  3180   	fcall	___lmul
+  1918  0300  0020               	movlb	0	; select bank0
+  1919  0301  0823               	movf	?___lmul+3,w
+  1920  0302  00C7               	movwf	_PhaseAccum+3
+  1921  0303  0822               	movf	?___lmul+2,w
+  1922  0304  00C6               	movwf	_PhaseAccum+2
+  1923  0305  0821               	movf	?___lmul+1,w
+  1924  0306  00C5               	movwf	_PhaseAccum+1
+  1925  0307  0820               	movf	?___lmul,w
+  1926  0308  00C4               	movwf	_PhaseAccum
+  1927  0309                     l1040:
+  1928                           
+  1929                           ;main.c: 264:         if (ctr == 6) {
+  1930  0309  3006               	movlw	6
+  1931  030A  0642               	xorwf	main@ctr,w
+  1932  030B  0443               	iorwf	main@ctr+1,w
+  1933  030C  1D03               	btfss	3,2
+  1934  030D  2B0F               	goto	u921
+  1935  030E  2B10               	goto	u920
+  1936  030F                     u921:
+  1937  030F  2B5F               	goto	l1046
+  1938  0310                     u920:
+  1939  0310                     l1042:
+  1940                           
+  1941                           ;main.c: 265:             PhaseAccum = PhaseAccum + (PhaseShift << (myarray[readADC(1)] 
+      +                          >> 5));
+  1942  0310  0844               	movf	_PhaseAccum,w
+  1943  0311  00AC               	movwf	??_main
+  1944  0312  0845               	movf	_PhaseAccum+1,w
+  1945  0313  00AD               	movwf	??_main+1
+  1946  0314  0846               	movf	_PhaseAccum+2,w
+  1947  0315  00AE               	movwf	??_main+2
+  1948  0316  0847               	movf	_PhaseAccum+3,w
+  1949  0317  00AF               	movwf	??_main+3
+  1950  0318  084D               	movf	_PhaseShift,w
+  1951  0319  00B0               	movwf	??_main+4
+  1952  031A  084E               	movf	_PhaseShift+1,w
+  1953  031B  00B1               	movwf	??_main+5
+  1954  031C  084F               	movf	_PhaseShift+2,w
+  1955  031D  00B2               	movwf	??_main+6
+  1956  031E  0850               	movf	_PhaseShift+3,w
+  1957  031F  00B3               	movwf	??_main+7
+  1958  0320  3001               	movlw	1
+  1959  0321  3186  2691  3180   	fcall	_readADC
+  1960  0324  0871               	movf	?_readADC+1,w
+  1961  0325  0085               	movwf	5
+  1962  0326  0870               	movf	?_readADC,w
+  1963  0327  0084               	movwf	4
+  1964  0328  30BC               	movlw	low (_myarray| (0+32768))
+  1965  0329  0784               	addwf	4,f
+  1966  032A  3083               	movlw	high (_myarray| (0+32768))
+  1967  032B  3D85               	addwfc	5,f
+  1968  032C  0800               	movf	0,w	;code access
+  1969  032D  0020               	movlb	0	; select bank0
+  1970  032E  00B4               	movwf	??_main+8
+  1971  032F  3005               	movlw	5
+  1972  0330                     u935:
+  1973  0330  36B4               	lsrf	??_main+8,f
+  1974  0331  0B89               	decfsz	9,f
+  1975  0332  2B30               	goto	u935
+  1976  0333  0834               	movf	??_main+8,w
+  1977  0334  0A89               	incf	9,f
+  1978  0335  2B3A               	goto	u940
+  1979  0336                     u945:
+  1980  0336  35B0               	lslf	??_main+4,f
+  1981  0337  0DB1               	rlf	??_main+5,f
+  1982  0338  0DB2               	rlf	??_main+6,f
+  1983  0339  0DB3               	rlf	??_main+7,f
+  1984  033A                     u940:
+  1985  033A  0B89               	decfsz	9,f
+  1986  033B  2B36               	goto	u945
+  1987  033C  0830               	movf	??_main+4,w
+  1988  033D  07AC               	addwf	??_main,f
+  1989  033E  0831               	movf	??_main+5,w
+  1990  033F  3DAD               	addwfc	??_main+1,f
+  1991  0340  0832               	movf	??_main+6,w
+  1992  0341  3DAE               	addwfc	??_main+2,f
+  1993  0342  0833               	movf	??_main+7,w
+  1994  0343  3DAF               	addwfc	??_main+3,f
+  1995  0344  082F               	movf	??_main+3,w
+  1996  0345  00C7               	movwf	_PhaseAccum+3
+  1997  0346  082E               	movf	??_main+2,w
+  1998  0347  00C6               	movwf	_PhaseAccum+2
+  1999  0348  082D               	movf	??_main+1,w
+  2000  0349  00C5               	movwf	_PhaseAccum+1
+  2001  034A  082C               	movf	??_main,w
+  2002  034B  00C4               	movwf	_PhaseAccum
+  2003  034C                     l1044:
+  2004                           
+  2005                           ;main.c: 266:             PhaseShift ^= readADC(1);
+  2006  034C  3001               	movlw	1
+  2007  034D  3186  2691  3180   	fcall	_readADC
+  2008  0350  0870               	movf	?_readADC,w
+  2009  0351  0020               	movlb	0	; select bank0
+  2010  0352  00AC               	movwf	??_main
+  2011  0353  0871               	movf	?_readADC+1,w
+  2012  0354  00AD               	movwf	??_main+1
+  2013  0355  01AE               	clrf	??_main+2
+  2014  0356  01AF               	clrf	??_main+3
+  2015  0357  082C               	movf	??_main,w
+  2016  0358  06CD               	xorwf	_PhaseShift,f
+  2017  0359  082D               	movf	??_main+1,w
+  2018  035A  06CE               	xorwf	_PhaseShift+1,f
+  2019  035B  082E               	movf	??_main+2,w
+  2020  035C  06CF               	xorwf	_PhaseShift+2,f
+  2021  035D  082F               	movf	??_main+3,w
+  2022  035E  06D0               	xorwf	_PhaseShift+3,f
+  2023  035F                     l1046:
+  2024                           
+  2025                           ;main.c: 269:         if (ctr == 7) {
+  2026  035F  3007               	movlw	7
+  2027  0360  0642               	xorwf	main@ctr,w
+  2028  0361  0443               	iorwf	main@ctr+1,w
+  2029  0362  1D03               	btfss	3,2
+  2030  0363  2B65               	goto	u951
+  2031  0364  2B66               	goto	u950
+  2032  0365                     u951:
+  2033  0365  2827               	goto	l90
+  2034  0366                     u950:
+  2035  0366                     l1048:
+  2036                           
+  2037                           ;main.c: 270:             ADRESL = readADC(1) * PhaseShift;
+  2038  0366  084D               	movf	_PhaseShift,w
+  2039  0367  00AC               	movwf	??_main
+  2040  0368  082C               	movf	??_main,w
+  2041  0369  00F6               	movwf	___bmul@multiplicand
+  2042  036A  3001               	movlw	1
+  2043  036B  3186  2691  3180   	fcall	_readADC
+  2044  036E  0870               	movf	?_readADC,w
+  2045  036F  3186  26ED  3180   	fcall	___bmul
+  2046  0372  0021               	movlb	1	; select bank1
+  2047  0373  009B               	movwf	27	;volatile
+  2048  0374                     l1050:
+  2049                           
+  2050                           ;main.c: 271:             PhaseAccum = PhaseAccum + ((PhaseShift * (sine[readADC(1)*6]))
+      +                          );
+  2051  0374  3006               	movlw	6
+  2052  0375  00F8               	movwf	___wmul@multiplicand
+  2053  0376  3000               	movlw	0
+  2054  0377  00F9               	movwf	___wmul@multiplicand+1
+  2055  0378  3001               	movlw	1
+  2056  0379  3186  2691  3180   	fcall	_readADC
+  2057  037C  0871               	movf	?_readADC+1,w
+  2058  037D  00F7               	movwf	___wmul@multiplier+1
+  2059  037E  0870               	movf	?_readADC,w
+  2060  037F  00F6               	movwf	___wmul@multiplier
+  2061  0380  3186  26B1  3180   	fcall	___wmul
+  2062  0383  0877               	movf	?___wmul+1,w
+  2063  0384  0085               	movwf	5
+  2064  0385  0876               	movf	?___wmul,w
+  2065  0386  0084               	movwf	4
+  2066  0387  30BC               	movlw	low (_sine| (0+32768))
+  2067  0388  0784               	addwf	4,f
+  2068  0389  3084               	movlw	high (_sine| (0+32768))
+  2069  038A  3D85               	addwfc	5,f
+  2070  038B  0800               	movf	0,w	;code access
+  2071  038C  0020               	movlb	0	; select bank0
+  2072  038D  00AC               	movwf	??_main
+  2073  038E  01AD               	clrf	??_main+1
+  2074  038F  01AE               	clrf	??_main+2
+  2075  0390  01AF               	clrf	??_main+3
+  2076  0391  082F               	movf	??_main+3,w
+  2077  0392  00A3               	movwf	___lmul@multiplier+3
+  2078  0393  082E               	movf	??_main+2,w
+  2079  0394  00A2               	movwf	___lmul@multiplier+2
+  2080  0395  082D               	movf	??_main+1,w
+  2081  0396  00A1               	movwf	___lmul@multiplier+1
+  2082  0397  082C               	movf	??_main,w
+  2083  0398  00A0               	movwf	___lmul@multiplier
+  2084  0399  0850               	movf	_PhaseShift+3,w
+  2085  039A  00A7               	movwf	___lmul@multiplicand+3
+  2086  039B  084F               	movf	_PhaseShift+2,w
+  2087  039C  00A6               	movwf	___lmul@multiplicand+2
+  2088  039D  084E               	movf	_PhaseShift+1,w
+  2089  039E  00A5               	movwf	___lmul@multiplicand+1
+  2090  039F  084D               	movf	_PhaseShift,w
+  2091  03A0  00A4               	movwf	___lmul@multiplicand
+  2092  03A1  3186  2637  3180   	fcall	___lmul
+  2093  03A4  0020               	movlb	0	; select bank0
+  2094  03A5  0820               	movf	?___lmul,w
+  2095  03A6  0744               	addwf	_PhaseAccum,w
+  2096  03A7  00B0               	movwf	??_main+4
+  2097  03A8  0821               	movf	?___lmul+1,w
+  2098  03A9  3D45               	addwfc	_PhaseAccum+1,w
+  2099  03AA  00B1               	movwf	??_main+5
+  2100  03AB  0822               	movf	?___lmul+2,w
+  2101  03AC  3D46               	addwfc	_PhaseAccum+2,w
+  2102  03AD  00B2               	movwf	??_main+6
+  2103  03AE  0823               	movf	?___lmul+3,w
+  2104  03AF  3D47               	addwfc	_PhaseAccum+3,w
+  2105  03B0  00B3               	movwf	??_main+7
+  2106  03B1  0833               	movf	??_main+7,w
+  2107  03B2  00C7               	movwf	_PhaseAccum+3
+  2108  03B3  0832               	movf	??_main+6,w
+  2109  03B4  00C6               	movwf	_PhaseAccum+2
+  2110  03B5  0831               	movf	??_main+5,w
+  2111  03B6  00C5               	movwf	_PhaseAccum+1
+  2112  03B7  0830               	movf	??_main+4,w
+  2113  03B8  00C4               	movwf	_PhaseAccum
+  2114  03B9  2827               	goto	l90
+  2115  03BA  3180  280D         	ljmp	start
+  2116  03BC                     __end_of_main:
+  2117                           
+  2118                           	psect	text1
+  2119  0691                     __ptext1:	
+  2120 ;; *************** function _readADC *****************
+  2121 ;; Defined at:
+  2122 ;;		line 143 in file "main.c"
+  2123 ;; Parameters:    Size  Location     Type
+  2124 ;;  channel         1    wreg     unsigned char 
+  2125 ;; Auto vars:     Size  Location     Type
+  2126 ;;  channel         1    5[COMMON] unsigned char 
+  2127 ;;  AN_Val          2    3[COMMON] unsigned int 
+  2128 ;; Return value:  Size  Location     Type
+  2129 ;;                  2    0[COMMON] unsigned int 
+  2130 ;; Registers used:
+  2131 ;;		wreg, status,2, status,0
+  2132 ;; Tracked objects:
+  2133 ;;		On entry : 0/0
+  2134 ;;		On exit  : 0/0
+  2135 ;;		Unchanged: 0/0
+  2136 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2137 ;;      Params:         2       0       0       0
+  2138 ;;      Locals:         3       0       0       0
+  2139 ;;      Temps:          1       0       0       0
+  2140 ;;      Totals:         6       0       0       0
+  2141 ;;Total ram usage:        6 bytes
+  2142 ;; Hardware stack levels used: 1
+  2143 ;; Hardware stack levels required when called: 1
+  2144 ;; This function calls:
+  2145 ;;		Nothing
+  2146 ;; This function is called by:
+  2147 ;;		_main
+  2148 ;; This function uses a non-reentrant model
+  2149 ;;
+  2150                           
+  2151                           
+  2152                           ;psect for function _readADC
+  2153  0691                     _readADC:
+  2154                           
+  2155                           ;incstack = 0
+  2156                           ; Regs used in _readADC: [wreg+status,2+status,0]
+  2157                           ;readADC@channel stored from wreg
+  2158  0691  00F5               	movwf	readADC@channel
+  2159  0692                     l892:
+  2160                           
+  2161                           ;main.c: 144:     unsigned int AN_Val;;main.c: 146:     ADCON1bits.ADFM = 1;
+  2162  0692  0021               	movlb	1	; select bank1
+  2163  0693  179E               	bsf	30,7	;volatile
+  2164  0694                     l894:
+  2165                           
+  2166                           ;main.c: 149:     ADCON0bits.CHS = channel;
+  2167  0694  0875               	movf	readADC@channel,w
+  2168  0695  00F2               	movwf	??_readADC
+  2169  0696  0DF2               	rlf	??_readADC,f
+  2170  0697  0DF2               	rlf	??_readADC,f
+  2171  0698  081D               	movf	29,w	;volatile
+  2172  0699  0672               	xorwf	??_readADC,w
+  2173  069A  3983               	andlw	-125
+  2174  069B  0672               	xorwf	??_readADC,w
+  2175  069C  009D               	movwf	29	;volatile
+  2176  069D                     l896:
+  2177                           
+  2178                           ;main.c: 152:     ADCON0bits.ADON = 1;
+  2179  069D  141D               	bsf	29,0	;volatile
+  2180  069E                     l898:
+  2181                           
+  2182                           ;main.c: 155:     _delay((unsigned long)((5)*(32000000/4000000.0)));
+  2183  069E  300D               	movlw	13
+  2184  069F                     u967:
+  2185  069F  0B89               	decfsz	9,f
+  2186  06A0  2E9F               	goto	u967
+  2187  06A1  0000               	nop
+  2188  06A2                     l900:
+  2189                           
+  2190                           ;main.c: 158:     ADCON0bits.GO_nDONE = 1;
+  2191  06A2  0021               	movlb	1	; select bank1
+  2192  06A3  149D               	bsf	29,1	;volatile
+  2193  06A4                     l76:	
+  2194                           ;main.c: 162:     }
+  2195                           
+  2196                           
+  2197                           ;main.c: 161:     while (ADCON0bits.GO_nDONE) {
+  2198  06A4  189D               	btfsc	29,1	;volatile
+  2199  06A5  2EA7               	goto	u491
+  2200  06A6  2EA8               	goto	u490
+  2201  06A7                     u491:
+  2202  06A7  2EA4               	goto	l76
+  2203  06A8                     u490:
+  2204  06A8                     l902:
+  2205                           
+  2206                           ;main.c: 164:     AN_Val = ADRES;
+  2207  06A8  081C               	movf	28,w	;volatile
+  2208  06A9  00F4               	movwf	readADC@AN_Val+1
+  2209  06AA  081B               	movf	27,w	;volatile
+  2210  06AB  00F3               	movwf	readADC@AN_Val
+  2211                           
+  2212                           ;main.c: 167:     return AN_Val;
+  2213  06AC  0874               	movf	readADC@AN_Val+1,w
+  2214  06AD  00F1               	movwf	?_readADC+1
+  2215  06AE  0873               	movf	readADC@AN_Val,w
+  2216  06AF  00F0               	movwf	?_readADC
+  2217  06B0                     l79:
+  2218  06B0  0008               	return
+  2219  06B1                     __end_of_readADC:
+  2220                           
+  2221                           	psect	text2
+  2222  06B1                     __ptext2:	
+  2223 ;; *************** function ___wmul *****************
+  2224 ;; Defined at:
+  2225 ;;		line 15 in file "/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul16.c"
+  2226 ;; Parameters:    Size  Location     Type
+  2227 ;;  multiplier      2    6[COMMON] unsigned int 
+  2228 ;;  multiplicand    2    8[COMMON] unsigned int 
+  2229 ;; Auto vars:     Size  Location     Type
+  2230 ;;  product         2   10[COMMON] unsigned int 
+  2231 ;; Return value:  Size  Location     Type
+  2232 ;;                  2    6[COMMON] unsigned int 
+  2233 ;; Registers used:
+  2234 ;;		wreg, status,2, status,0
+  2235 ;; Tracked objects:
+  2236 ;;		On entry : 0/0
+  2237 ;;		On exit  : 0/0
+  2238 ;;		Unchanged: 0/0
+  2239 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2240 ;;      Params:         4       0       0       0
+  2241 ;;      Locals:         2       0       0       0
+  2242 ;;      Temps:          0       0       0       0
+  2243 ;;      Totals:         6       0       0       0
+  2244 ;;Total ram usage:        6 bytes
+  2245 ;; Hardware stack levels used: 1
+  2246 ;; Hardware stack levels required when called: 1
+  2247 ;; This function calls:
+  2248 ;;		Nothing
+  2249 ;; This function is called by:
+  2250 ;;		_main
+  2251 ;; This function uses a non-reentrant model
+  2252 ;;
+  2253                           
+  2254                           
+  2255                           ;psect for function ___wmul
+  2256  06B1                     ___wmul:
+  2257  06B1                     l918:	
+  2258                           ;incstack = 0
+  2259                           ; Regs used in ___wmul: [wreg+status,2+status,0]
+  2260                           
+  2261  06B1  01FA               	clrf	___wmul@product
+  2262  06B2  01FB               	clrf	___wmul@product+1
+  2263  06B3                     l920:
+  2264  06B3  1C76               	btfss	___wmul@multiplier,0
+  2265  06B4  2EB6               	goto	u511
+  2266  06B5  2EB7               	goto	u510
+  2267  06B6                     u511:
+  2268  06B6  2EBB               	goto	l258
+  2269  06B7                     u510:
+  2270  06B7                     l922:
+  2271  06B7  0878               	movf	___wmul@multiplicand,w
+  2272  06B8  07FA               	addwf	___wmul@product,f
+  2273  06B9  0879               	movf	___wmul@multiplicand+1,w
+  2274  06BA  3DFB               	addwfc	___wmul@product+1,f
+  2275  06BB                     l258:
+  2276  06BB  3001               	movlw	1
+  2277  06BC                     u525:
+  2278  06BC  35F8               	lslf	___wmul@multiplicand,f
+  2279  06BD  0DF9               	rlf	___wmul@multiplicand+1,f
+  2280  06BE  0B89               	decfsz	9,f
+  2281  06BF  2EBC               	goto	u525
+  2282  06C0                     l924:
+  2283  06C0  3001               	movlw	1
+  2284  06C1                     u535:
+  2285  06C1  36F7               	lsrf	___wmul@multiplier+1,f
+  2286  06C2  0CF6               	rrf	___wmul@multiplier,f
+  2287  06C3  0B89               	decfsz	9,f
+  2288  06C4  2EC1               	goto	u535
+  2289  06C5                     l926:
+  2290  06C5  0876               	movf	___wmul@multiplier,w
+  2291  06C6  0477               	iorwf	___wmul@multiplier+1,w
+  2292  06C7  1D03               	btfss	3,2
+  2293  06C8  2ECA               	goto	u541
+  2294  06C9  2ECB               	goto	u540
+  2295  06CA                     u541:
+  2296  06CA  2EB3               	goto	l920
+  2297  06CB                     u540:
+  2298  06CB                     l928:
+  2299  06CB  087B               	movf	___wmul@product+1,w
+  2300  06CC  00F7               	movwf	?___wmul+1
+  2301  06CD  087A               	movf	___wmul@product,w
+  2302  06CE  00F6               	movwf	?___wmul
+  2303  06CF                     l260:
+  2304  06CF  0008               	return
+  2305  06D0                     __end_of___wmul:
+  2306                           
+  2307                           	psect	text3
+  2308  0637                     __ptext3:	
+  2309 ;; *************** function ___lmul *****************
+  2310 ;; Defined at:
+  2311 ;;		line 15 in file "/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul32.c"
+  2312 ;; Parameters:    Size  Location     Type
+  2313 ;;  multiplier      4    0[BANK0 ] unsigned long 
+  2314 ;;  multiplicand    4    4[BANK0 ] unsigned long 
+  2315 ;; Auto vars:     Size  Location     Type
+  2316 ;;  product         4    8[BANK0 ] unsigned long 
+  2317 ;; Return value:  Size  Location     Type
+  2318 ;;                  4    0[BANK0 ] unsigned long 
+  2319 ;; Registers used:
+  2320 ;;		wreg, status,2, status,0
+  2321 ;; Tracked objects:
+  2322 ;;		On entry : 0/0
+  2323 ;;		On exit  : 0/0
+  2324 ;;		Unchanged: 0/0
+  2325 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2326 ;;      Params:         0       8       0       0
+  2327 ;;      Locals:         0       4       0       0
+  2328 ;;      Temps:          0       0       0       0
+  2329 ;;      Totals:         0      12       0       0
+  2330 ;;Total ram usage:       12 bytes
+  2331 ;; Hardware stack levels used: 1
+  2332 ;; Hardware stack levels required when called: 1
+  2333 ;; This function calls:
+  2334 ;;		Nothing
+  2335 ;; This function is called by:
+  2336 ;;		_main
+  2337 ;; This function uses a non-reentrant model
+  2338 ;;
+  2339                           
+  2340                           
+  2341                           ;psect for function ___lmul
+  2342  0637                     ___lmul:
+  2343  0637                     l932:	
+  2344                           ;incstack = 0
+  2345                           ; Regs used in ___lmul: [wreg+status,2+status,0]
+  2346                           
+  2347  0637  3000               	movlw	0
+  2348  0638  0020               	movlb	0	; select bank0
+  2349  0639  00AB               	movwf	___lmul@product+3
+  2350  063A  3000               	movlw	0
+  2351  063B  00AA               	movwf	___lmul@product+2
+  2352  063C  3000               	movlw	0
+  2353  063D  00A9               	movwf	___lmul@product+1
+  2354  063E  3000               	movlw	0
+  2355  063F  00A8               	movwf	___lmul@product
+  2356  0640                     l934:
+  2357  0640  1C20               	btfss	___lmul@multiplier,0
+  2358  0641  2E43               	goto	u551
+  2359  0642  2E44               	goto	u550
+  2360  0643                     u551:
+  2361  0643  2E4C               	goto	l938
+  2362  0644                     u550:
+  2363  0644                     l936:
+  2364  0644  0824               	movf	___lmul@multiplicand,w
+  2365  0645  07A8               	addwf	___lmul@product,f
+  2366  0646  0825               	movf	___lmul@multiplicand+1,w
+  2367  0647  3DA9               	addwfc	___lmul@product+1,f
+  2368  0648  0826               	movf	___lmul@multiplicand+2,w
+  2369  0649  3DAA               	addwfc	___lmul@product+2,f
+  2370  064A  0827               	movf	___lmul@multiplicand+3,w
+  2371  064B  3DAB               	addwfc	___lmul@product+3,f
+  2372  064C                     l938:
+  2373  064C  3001               	movlw	1
+  2374  064D                     u565:
+  2375  064D  35A4               	lslf	___lmul@multiplicand,f
+  2376  064E  0DA5               	rlf	___lmul@multiplicand+1,f
+  2377  064F  0DA6               	rlf	___lmul@multiplicand+2,f
+  2378  0650  0DA7               	rlf	___lmul@multiplicand+3,f
+  2379  0651  0B89               	decfsz	9,f
+  2380  0652  2E4D               	goto	u565
+  2381  0653                     l940:
+  2382  0653  3001               	movlw	1
+  2383  0654                     u575:
+  2384  0654  36A3               	lsrf	___lmul@multiplier+3,f
+  2385  0655  0CA2               	rrf	___lmul@multiplier+2,f
+  2386  0656  0CA1               	rrf	___lmul@multiplier+1,f
+  2387  0657  0CA0               	rrf	___lmul@multiplier,f
+  2388  0658  0B89               	decfsz	9,f
+  2389  0659  2E54               	goto	u575
+  2390  065A  0823               	movf	___lmul@multiplier+3,w
+  2391  065B  0422               	iorwf	___lmul@multiplier+2,w
+  2392  065C  0421               	iorwf	___lmul@multiplier+1,w
+  2393  065D  0420               	iorwf	___lmul@multiplier,w
+  2394  065E  1D03               	skipz
+  2395  065F  2E61               	goto	u581
+  2396  0660  2E62               	goto	u580
+  2397  0661                     u581:
+  2398  0661  2E40               	goto	l934
+  2399  0662                     u580:
+  2400  0662                     l942:
+  2401  0662  082B               	movf	___lmul@product+3,w
+  2402  0663  00A3               	movwf	?___lmul+3
+  2403  0664  082A               	movf	___lmul@product+2,w
+  2404  0665  00A2               	movwf	?___lmul+2
+  2405  0666  0829               	movf	___lmul@product+1,w
+  2406  0667  00A1               	movwf	?___lmul+1
+  2407  0668  0828               	movf	___lmul@product,w
+  2408  0669  00A0               	movwf	?___lmul
+  2409  066A                     l272:
+  2410  066A  0008               	return
+  2411  066B                     __end_of___lmul:
+  2412                           
+  2413                           	psect	text4
+  2414  06ED                     __ptext4:	
+  2415 ;; *************** function ___bmul *****************
+  2416 ;; Defined at:
+  2417 ;;		line 4 in file "/Applications/microchip/xc8/v2.32/pic/sources/c99/common/Umul8.c"
+  2418 ;; Parameters:    Size  Location     Type
+  2419 ;;  multiplier      1    wreg     unsigned char 
+  2420 ;;  multiplicand    1    6[COMMON] unsigned char 
+  2421 ;; Auto vars:     Size  Location     Type
+  2422 ;;  multiplier      1    9[COMMON] unsigned char 
+  2423 ;;  product         1    8[COMMON] unsigned char 
+  2424 ;; Return value:  Size  Location     Type
+  2425 ;;                  1    wreg      unsigned char 
+  2426 ;; Registers used:
+  2427 ;;		wreg, status,2, status,0
+  2428 ;; Tracked objects:
+  2429 ;;		On entry : 0/0
+  2430 ;;		On exit  : 0/0
+  2431 ;;		Unchanged: 0/0
+  2432 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2433 ;;      Params:         1       0       0       0
+  2434 ;;      Locals:         2       0       0       0
+  2435 ;;      Temps:          1       0       0       0
+  2436 ;;      Totals:         4       0       0       0
+  2437 ;;Total ram usage:        4 bytes
+  2438 ;; Hardware stack levels used: 1
+  2439 ;; Hardware stack levels required when called: 1
+  2440 ;; This function calls:
+  2441 ;;		Nothing
+  2442 ;; This function is called by:
+  2443 ;;		_main
+  2444 ;; This function uses a non-reentrant model
+  2445 ;;
+  2446                           
+  2447                           
+  2448                           ;psect for function ___bmul
+  2449  06ED                     ___bmul:
+  2450                           
+  2451                           ;incstack = 0
+  2452                           ; Regs used in ___bmul: [wreg+status,2+status,0]
+  2453                           ;___bmul@multiplier stored from wreg
+  2454  06ED  00F9               	movwf	___bmul@multiplier
+  2455  06EE                     l946:
+  2456  06EE  01F8               	clrf	___bmul@product
+  2457  06EF                     l948:
+  2458  06EF  1C79               	btfss	___bmul@multiplier,0
+  2459  06F0  2EF2               	goto	u591
+  2460  06F1  2EF3               	goto	u590
+  2461  06F2                     u591:
+  2462  06F2  2EF7               	goto	l952
+  2463  06F3                     u590:
+  2464  06F3                     l950:
+  2465  06F3  0876               	movf	___bmul@multiplicand,w
+  2466  06F4  00F7               	movwf	??___bmul
+  2467  06F5  0877               	movf	??___bmul,w
+  2468  06F6  07F8               	addwf	___bmul@product,f
+  2469  06F7                     l952:
+  2470  06F7  1003               	clrc
+  2471  06F8  0DF6               	rlf	___bmul@multiplicand,f
+  2472  06F9                     l954:
+  2473  06F9  1003               	clrc
+  2474  06FA  0CF9               	rrf	___bmul@multiplier,f
+  2475  06FB  0879               	movf	___bmul@multiplier,w
+  2476  06FC  1D03               	btfss	3,2
+  2477  06FD  2EFF               	goto	u601
+  2478  06FE  2F00               	goto	u600
+  2479  06FF                     u601:
+  2480  06FF  2EEF               	goto	l948
+  2481  0700                     u600:
+  2482  0700                     l956:
+  2483  0700  0878               	movf	___bmul@product,w
+  2484  0701                     l284:
+  2485  0701  0008               	return
+  2486  0702                     __end_of___bmul:
+  2487                           
+  2488                           	psect	text5
+  2489  05BC                     __ptext5:	
+  2490 ;; *************** function ___almod *****************
+  2491 ;; Defined at:
+  2492 ;;		line 5 in file "/Applications/microchip/xc8/v2.32/pic/sources/c99/common/almod.c"
+  2493 ;; Parameters:    Size  Location     Type
+  2494 ;;  divisor         4    0[COMMON] long 
+  2495 ;;  dividend        4    4[COMMON] long 
+  2496 ;; Auto vars:     Size  Location     Type
+  2497 ;;  sign            1   10[COMMON] unsigned char 
+  2498 ;;  counter         1    9[COMMON] unsigned char 
+  2499 ;; Return value:  Size  Location     Type
+  2500 ;;                  4    0[COMMON] long 
+  2501 ;; Registers used:
+  2502 ;;		wreg, status,2, status,0
+  2503 ;; Tracked objects:
+  2504 ;;		On entry : 0/0
+  2505 ;;		On exit  : 0/0
+  2506 ;;		Unchanged: 0/0
+  2507 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2508 ;;      Params:         8       0       0       0
+  2509 ;;      Locals:         2       0       0       0
+  2510 ;;      Temps:          1       0       0       0
+  2511 ;;      Totals:        11       0       0       0
+  2512 ;;Total ram usage:       11 bytes
+  2513 ;; Hardware stack levels used: 1
+  2514 ;; Hardware stack levels required when called: 1
+  2515 ;; This function calls:
+  2516 ;;		Nothing
+  2517 ;; This function is called by:
+  2518 ;;		_main
+  2519 ;; This function uses a non-reentrant model
+  2520 ;;
+  2521                           
+  2522                           
+  2523                           ;psect for function ___almod
+  2524  05BC                     ___almod:
+  2525  05BC                     l960:	
+  2526                           ;incstack = 0
+  2527                           ; Regs used in ___almod: [wreg+status,2+status,0]
+  2528                           
+  2529  05BC  01FA               	clrf	___almod@sign
+  2530  05BD                     l962:
+  2531  05BD  1FF7               	btfss	___almod@dividend+3,7
+  2532  05BE  2DC0               	goto	u611
+  2533  05BF  2DC1               	goto	u610
+  2534  05C0                     u611:
+  2535  05C0  2DCE               	goto	l336
+  2536  05C1                     u610:
+  2537  05C1                     l964:
+  2538  05C1  09F4               	comf	___almod@dividend,f
+  2539  05C2  09F5               	comf	___almod@dividend+1,f
+  2540  05C3  09F6               	comf	___almod@dividend+2,f
+  2541  05C4  09F7               	comf	___almod@dividend+3,f
+  2542  05C5  0AF4               	incf	___almod@dividend,f
+  2543  05C6  1903               	skipnz
+  2544  05C7  0AF5               	incf	___almod@dividend+1,f
+  2545  05C8  1903               	skipnz
+  2546  05C9  0AF6               	incf	___almod@dividend+2,f
+  2547  05CA  1903               	skipnz
+  2548  05CB  0AF7               	incf	___almod@dividend+3,f
+  2549  05CC  01FA               	clrf	___almod@sign
+  2550  05CD  0AFA               	incf	___almod@sign,f
+  2551  05CE                     l336:
+  2552  05CE  1FF3               	btfss	___almod@divisor+3,7
+  2553  05CF  2DD1               	goto	u621
+  2554  05D0  2DD2               	goto	u620
+  2555  05D1                     u621:
+  2556  05D1  2DDD               	goto	l968
+  2557  05D2                     u620:
+  2558  05D2                     l966:
+  2559  05D2  09F0               	comf	___almod@divisor,f
+  2560  05D3  09F1               	comf	___almod@divisor+1,f
+  2561  05D4  09F2               	comf	___almod@divisor+2,f
+  2562  05D5  09F3               	comf	___almod@divisor+3,f
+  2563  05D6  0AF0               	incf	___almod@divisor,f
+  2564  05D7  1903               	skipnz
+  2565  05D8  0AF1               	incf	___almod@divisor+1,f
+  2566  05D9  1903               	skipnz
+  2567  05DA  0AF2               	incf	___almod@divisor+2,f
+  2568  05DB  1903               	skipnz
+  2569  05DC  0AF3               	incf	___almod@divisor+3,f
+  2570  05DD                     l968:
+  2571  05DD  0873               	movf	___almod@divisor+3,w
+  2572  05DE  0472               	iorwf	___almod@divisor+2,w
+  2573  05DF  0471               	iorwf	___almod@divisor+1,w
+  2574  05E0  0470               	iorwf	___almod@divisor,w
+  2575  05E1  1903               	skipnz
+  2576  05E2  2DE4               	goto	u631
+  2577  05E3  2DE5               	goto	u630
+  2578  05E4                     u631:
+  2579  05E4  2E1E               	goto	l984
+  2580  05E5                     u630:
+  2581  05E5                     l970:
+  2582  05E5  01F9               	clrf	___almod@counter
+  2583  05E6  0AF9               	incf	___almod@counter,f
+  2584  05E7  2DF3               	goto	l974
+  2585  05E8                     l972:
+  2586  05E8  3001               	movlw	1
+  2587  05E9                     u645:
+  2588  05E9  35F0               	lslf	___almod@divisor,f
+  2589  05EA  0DF1               	rlf	___almod@divisor+1,f
+  2590  05EB  0DF2               	rlf	___almod@divisor+2,f
+  2591  05EC  0DF3               	rlf	___almod@divisor+3,f
+  2592  05ED  0B89               	decfsz	9,f
+  2593  05EE  2DE9               	goto	u645
+  2594  05EF  3001               	movlw	1
+  2595  05F0  00F8               	movwf	??___almod
+  2596  05F1  0878               	movf	??___almod,w
+  2597  05F2  07F9               	addwf	___almod@counter,f
+  2598  05F3                     l974:
+  2599  05F3  1FF3               	btfss	___almod@divisor+3,7
+  2600  05F4  2DF6               	goto	u651
+  2601  05F5  2DF7               	goto	u650
+  2602  05F6                     u651:
+  2603  05F6  2DE8               	goto	l972
+  2604  05F7                     u650:
+  2605  05F7                     l976:
+  2606  05F7  0873               	movf	___almod@divisor+3,w
+  2607  05F8  0277               	subwf	___almod@dividend+3,w
+  2608  05F9  1D03               	skipz
+  2609  05FA  2E05               	goto	u665
+  2610  05FB  0872               	movf	___almod@divisor+2,w
+  2611  05FC  0276               	subwf	___almod@dividend+2,w
+  2612  05FD  1D03               	skipz
+  2613  05FE  2E05               	goto	u665
+  2614  05FF  0871               	movf	___almod@divisor+1,w
+  2615  0600  0275               	subwf	___almod@dividend+1,w
+  2616  0601  1D03               	skipz
+  2617  0602  2E05               	goto	u665
+  2618  0603  0870               	movf	___almod@divisor,w
+  2619  0604  0274               	subwf	___almod@dividend,w
+  2620  0605                     u665:
+  2621  0605  1C03               	skipc
+  2622  0606  2E08               	goto	u661
+  2623  0607  2E09               	goto	u660
+  2624  0608                     u661:
+  2625  0608  2E11               	goto	l980
+  2626  0609                     u660:
+  2627  0609                     l978:
+  2628  0609  0870               	movf	___almod@divisor,w
+  2629  060A  02F4               	subwf	___almod@dividend,f
+  2630  060B  0871               	movf	___almod@divisor+1,w
+  2631  060C  3BF5               	subwfb	___almod@dividend+1,f
+  2632  060D  0872               	movf	___almod@divisor+2,w
+  2633  060E  3BF6               	subwfb	___almod@dividend+2,f
+  2634  060F  0873               	movf	___almod@divisor+3,w
+  2635  0610  3BF7               	subwfb	___almod@dividend+3,f
+  2636  0611                     l980:
+  2637  0611  3001               	movlw	1
+  2638  0612                     u675:
+  2639  0612  36F3               	lsrf	___almod@divisor+3,f
+  2640  0613  0CF2               	rrf	___almod@divisor+2,f
+  2641  0614  0CF1               	rrf	___almod@divisor+1,f
+  2642  0615  0CF0               	rrf	___almod@divisor,f
+  2643  0616  0B89               	decfsz	9,f
+  2644  0617  2E12               	goto	u675
+  2645  0618                     l982:
+  2646  0618  3001               	movlw	1
+  2647  0619  02F9               	subwf	___almod@counter,f
+  2648  061A  1D03               	btfss	3,2
+  2649  061B  2E1D               	goto	u681
+  2650  061C  2E1E               	goto	u680
+  2651  061D                     u681:
+  2652  061D  2DF7               	goto	l976
+  2653  061E                     u680:
+  2654  061E                     l984:
+  2655  061E  087A               	movf	___almod@sign,w
+  2656  061F  1903               	btfsc	3,2
+  2657  0620  2E22               	goto	u691
+  2658  0621  2E23               	goto	u690
+  2659  0622                     u691:
+  2660  0622  2E2E               	goto	l988
+  2661  0623                     u690:
+  2662  0623                     l986:
+  2663  0623  09F4               	comf	___almod@dividend,f
+  2664  0624  09F5               	comf	___almod@dividend+1,f
+  2665  0625  09F6               	comf	___almod@dividend+2,f
+  2666  0626  09F7               	comf	___almod@dividend+3,f
+  2667  0627  0AF4               	incf	___almod@dividend,f
+  2668  0628  1903               	skipnz
+  2669  0629  0AF5               	incf	___almod@dividend+1,f
+  2670  062A  1903               	skipnz
+  2671  062B  0AF6               	incf	___almod@dividend+2,f
+  2672  062C  1903               	skipnz
+  2673  062D  0AF7               	incf	___almod@dividend+3,f
+  2674  062E                     l988:
+  2675  062E  0877               	movf	___almod@dividend+3,w
+  2676  062F  00F3               	movwf	?___almod+3
+  2677  0630  0876               	movf	___almod@dividend+2,w
+  2678  0631  00F2               	movwf	?___almod+2
+  2679  0632  0875               	movf	___almod@dividend+1,w
+  2680  0633  00F1               	movwf	?___almod+1
+  2681  0634  0874               	movf	___almod@dividend,w
+  2682  0635  00F0               	movwf	?___almod
+  2683  0636                     l346:
+  2684  0636  0008               	return
+  2685  0637                     __end_of___almod:
+  2686                           
+  2687                           	psect	text6
+  2688  066B                     __ptext6:	
+  2689 ;; *************** function _Init_Main *****************
+  2690 ;; Defined at:
+  2691 ;;		line 111 in file "main.c"
+  2692 ;; Parameters:    Size  Location     Type
+  2693 ;;		None
+  2694 ;; Auto vars:     Size  Location     Type
+  2695 ;;		None
+  2696 ;; Return value:  Size  Location     Type
+  2697 ;;                  1    wreg      void 
+  2698 ;; Registers used:
+  2699 ;;		wreg
+  2700 ;; Tracked objects:
+  2701 ;;		On entry : 0/0
+  2702 ;;		On exit  : 0/0
+  2703 ;;		Unchanged: 0/0
+  2704 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2705 ;;      Params:         0       0       0       0
+  2706 ;;      Locals:         0       0       0       0
+  2707 ;;      Temps:          0       0       0       0
+  2708 ;;      Totals:         0       0       0       0
+  2709 ;;Total ram usage:        0 bytes
+  2710 ;; Hardware stack levels used: 1
+  2711 ;; Hardware stack levels required when called: 1
+  2712 ;; This function calls:
+  2713 ;;		Nothing
+  2714 ;; This function is called by:
+  2715 ;;		_main
+  2716 ;; This function uses a non-reentrant model
+  2717 ;;
+  2718                           
+  2719                           
+  2720                           ;psect for function _Init_Main
+  2721  066B                     _Init_Main:
+  2722  066B                     l886:	
+  2723                           ;incstack = 0
+  2724                           ; Regs used in _Init_Main: [wreg]
+  2725                           
+  2726                           
+  2727                           ;main.c: 114:     OPTION_REG = 0b11000000;
+  2728  066B  30C0               	movlw	192
+  2729  066C  0021               	movlb	1	; select bank1
+  2730  066D  0095               	movwf	21	;volatile
+  2731                           
+  2732                           ;main.c: 115:     OSCCON = 0b11110000;
+  2733  066E  30F0               	movlw	240
+  2734  066F  0099               	movwf	25	;volatile
+  2735                           
+  2736                           ;main.c: 116:     TRISA = 0b00011111;
+  2737  0670  301F               	movlw	31
+  2738  0671  008C               	movwf	12	;volatile
+  2739                           
+  2740                           ;main.c: 118:     ANSELA = 0b00001010;
+  2741  0672  300A               	movlw	10
+  2742  0673  0023               	movlb	3	; select bank3
+  2743  0674  008C               	movwf	12	;volatile
+  2744  0675                     l888:
+  2745                           
+  2746                           ;main.c: 119:     PORTAbits.RA0 = 1;
+  2747  0675  0020               	movlb	0	; select bank0
+  2748  0676  140C               	bsf	12,0	;volatile
+  2749                           
+  2750                           ;main.c: 120:     T2CON = 0b00000100;
+  2751  0677  3004               	movlw	4
+  2752  0678  009C               	movwf	28	;volatile
+  2753                           
+  2754                           ;main.c: 121:     PR2 = (0x50);
+  2755  0679  3050               	movlw	80
+  2756  067A  009B               	movwf	27	;volatile
+  2757                           
+  2758                           ;main.c: 122:     CCP1CON = 0b00001111;
+  2759  067B  300F               	movlw	15
+  2760  067C  0025               	movlb	5	; select bank5
+  2761  067D  0093               	movwf	19	;volatile
+  2762                           
+  2763                           ;main.c: 123:     PhaseShift = 0x00FFFFFF;
+  2764  067E  3000               	movlw	0
+  2765  067F  0020               	movlb	0	; select bank0
+  2766  0680  00D0               	movwf	_PhaseShift+3
+  2767  0681  30FF               	movlw	255
+  2768  0682  00CF               	movwf	_PhaseShift+2
+  2769  0683  30FF               	movlw	255
+  2770  0684  00CE               	movwf	_PhaseShift+1
+  2771  0685  30FF               	movlw	255
+  2772  0686  00CD               	movwf	_PhaseShift
+  2773  0687                     l890:
+  2774                           
+  2775                           ;main.c: 124:     APFCONbits.CCP1SEL = 1;
+  2776  0687  0022               	movlb	2	; select bank2
+  2777  0688  141D               	bsf	29,0	;volatile
+  2778                           
+  2779                           ;main.c: 125:     ADCON0 = 0b00001101;
+  2780  0689  300D               	movlw	13
+  2781  068A  0021               	movlb	1	; select bank1
+  2782  068B  009D               	movwf	29	;volatile
+  2783                           
+  2784                           ;main.c: 126:     ADCON1 = 0b00100000;
+  2785  068C  3020               	movlw	32
+  2786  068D  009E               	movwf	30	;volatile
+  2787                           
+  2788                           ;main.c: 127:     INTCON = 0b10010000;
+  2789  068E  3090               	movlw	144
+  2790  068F  008B               	movwf	11	;volatile
+  2791  0690                     l67:
+  2792  0690  0008               	return
+  2793  0691                     __end_of_Init_Main:
+  2794                           
+  2795                           	psect	text7
+  2796  06D0                     __ptext7:	
+  2797 ;; *************** function _ADCPhaseShift *****************
+  2798 ;; Defined at:
+  2799 ;;		line 170 in file "main.c"
+  2800 ;; Parameters:    Size  Location     Type
+  2801 ;;		None
+  2802 ;; Auto vars:     Size  Location     Type
+  2803 ;;		None
+  2804 ;; Return value:  Size  Location     Type
+  2805 ;;                  1    wreg      void 
+  2806 ;; Registers used:
+  2807 ;;		wreg, status,2, status,0
+  2808 ;; Tracked objects:
+  2809 ;;		On entry : 0/0
+  2810 ;;		On exit  : 0/0
+  2811 ;;		Unchanged: 0/0
+  2812 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2813 ;;      Params:         0       0       0       0
+  2814 ;;      Locals:         0       0       0       0
+  2815 ;;      Temps:          1       0       0       0
+  2816 ;;      Totals:         1       0       0       0
+  2817 ;;Total ram usage:        1 bytes
+  2818 ;; Hardware stack levels used: 1
+  2819 ;; Hardware stack levels required when called: 1
+  2820 ;; This function calls:
+  2821 ;;		Nothing
+  2822 ;; This function is called by:
+  2823 ;;		_main
+  2824 ;; This function uses a non-reentrant model
+  2825 ;;
+  2826                           
+  2827                           
+  2828                           ;psect for function _ADCPhaseShift
+  2829  06D0                     _ADCPhaseShift:
+  2830  06D0                     l906:	
+  2831                           ;incstack = 0
+  2832                           ; Regs used in _ADCPhaseShift: [wreg+status,2+status,0]
+  2833                           
+  2834                           
+  2835                           ;main.c: 172:     ADCON1bits.ADFM = 0;
+  2836  06D0  0021               	movlb	1	; select bank1
+  2837  06D1  139E               	bcf	30,7	;volatile
+  2838  06D2                     l908:
+  2839                           
+  2840                           ;main.c: 175:     ADCON0bits.CHS = 3;
+  2841  06D2  081D               	movf	29,w	;volatile
+  2842  06D3  3983               	andlw	-125
+  2843  06D4  380C               	iorlw	12
+  2844  06D5  009D               	movwf	29	;volatile
+  2845  06D6                     l910:
+  2846                           
+  2847                           ;main.c: 178:     ADCON0bits.ADON = 1;
+  2848  06D6  141D               	bsf	29,0	;volatile
+  2849  06D7                     l912:
+  2850                           
+  2851                           ;main.c: 181:     _delay((unsigned long)((5)*(32000000/4000000.0)));
+  2852  06D7  300D               	movlw	13
+  2853  06D8                     u977:
+  2854  06D8  0B89               	decfsz	9,f
+  2855  06D9  2ED8               	goto	u977
+  2856  06DA  0000               	nop
+  2857  06DB                     l914:
+  2858                           
+  2859                           ;main.c: 184:     ADCON0bits.GO_nDONE = 1;
+  2860  06DB  0021               	movlb	1	; select bank1
+  2861  06DC  149D               	bsf	29,1	;volatile
+  2862  06DD                     l82:	
+  2863                           ;main.c: 188:     }
+  2864                           
+  2865                           
+  2866                           ;main.c: 187:     while (ADCON0bits.GO_nDONE) {
+  2867  06DD  189D               	btfsc	29,1	;volatile
+  2868  06DE  2EE0               	goto	u501
+  2869  06DF  2EE1               	goto	u500
+  2870  06E0                     u501:
+  2871  06E0  2EDD               	goto	l82
+  2872  06E1                     u500:
+  2873  06E1                     l916:
+  2874                           
+  2875                           ;main.c: 189:     ((char *) &PhaseShift)[1] = ADRESL;
+  2876  06E1  081B               	movf	27,w	;volatile
+  2877  06E2  00F0               	movwf	??_ADCPhaseShift
+  2878  06E3  0870               	movf	??_ADCPhaseShift,w
+  2879  06E4  0020               	movlb	0	; select bank0
+  2880  06E5  00CE               	movwf	_PhaseShift+1
+  2881                           
+  2882                           ;main.c: 190:     ((char *) &PhaseShift)[2] = ADRESH;
+  2883  06E6  0021               	movlb	1	; select bank1
+  2884  06E7  081C               	movf	28,w	;volatile
+  2885  06E8  00F0               	movwf	??_ADCPhaseShift
+  2886  06E9  0870               	movf	??_ADCPhaseShift,w
+  2887  06EA  0020               	movlb	0	; select bank0
+  2888  06EB  00CF               	movwf	_PhaseShift+2
+  2889  06EC                     l85:
+  2890  06EC  0008               	return
+  2891  06ED                     __end_of_ADCPhaseShift:
+  2892                           
+  2893                           	psect	intentry
+  2894  0004                     __pintentry:	
+  2895 ;; *************** function _ISR *****************
+  2896 ;; Defined at:
+  2897 ;;		line 132 in file "main.c"
+  2898 ;; Parameters:    Size  Location     Type
+  2899 ;;		None
+  2900 ;; Auto vars:     Size  Location     Type
+  2901 ;;		None
+  2902 ;; Return value:  Size  Location     Type
+  2903 ;;                  1    wreg      void 
+  2904 ;; Registers used:
+  2905 ;;		None
+  2906 ;; Tracked objects:
+  2907 ;;		On entry : 0/0
+  2908 ;;		On exit  : 0/0
+  2909 ;;		Unchanged: 0/0
+  2910 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2911 ;;      Params:         0       0       0       0
+  2912 ;;      Locals:         0       0       0       0
+  2913 ;;      Temps:          0       0       0       0
+  2914 ;;      Totals:         0       0       0       0
+  2915 ;;Total ram usage:        0 bytes
+  2916 ;; Hardware stack levels used: 1
+  2917 ;; This function calls:
+  2918 ;;		Nothing
+  2919 ;; This function is called by:
+  2920 ;;		Interrupt level 1
+  2921 ;; This function uses a non-reentrant model
+  2922 ;;
+  2923                           
+  2924  0004                     _ISR:
+  2925                           
+  2926                           ;incstack = 0
+  2927  0004  147E               	bsf	int$flags,0	;set compiler interrupt flag (level 1)
+  2928                           
+  2929                           ; Regs used in _ISR: []
+  2930  0005  3180               	pagesel	$
+  2931  0006                     i1l822:
+  2932                           
+  2933                           ;main.c: 133:     if (INTCONbits.INTF == 1) {
+  2934  0006  1C8B               	btfss	11,1	;volatile
+  2935  0007  2809               	goto	u22_21
+  2936  0008  280A               	goto	u22_20
+  2937  0009                     u22_21:
+  2938  0009  280B               	goto	i1l73
+  2939  000A                     u22_20:
+  2940  000A                     i1l824:
+  2941                           
+  2942                           ;main.c: 134:         INTCONbits.INTF = 0;
+  2943  000A  108B               	bcf	11,1	;volatile
+  2944  000B                     i1l73:
+  2945  000B  107E               	bcf	int$flags,0	;clear compiler interrupt flag (level 1)
+  2946  000C  0009               	retfie
+  2947  000D                     __end_of_ISR:
+  2948  007E                     btemp	set	126	;btemp
+  2949  007E                     int$flags	set	126
+  2950  007E                     wtemp0	set	126
+  2951                           
+  2952                           	psect	config
+  2953                           
+  2954                           ;Config register CONFIG1 @ 0x8007
+  2955                           ;	Oscillator Selection
+  2956                           ;	FOSC = INTOSC, INTOSC oscillator: I/O function on CLKIN pin
+  2957                           ;	Watchdog Timer Enable
+  2958                           ;	WDTE = OFF, WDT disabled
+  2959                           ;	Power-up Timer Enable
+  2960                           ;	PWRTE = OFF, PWRT disabled
+  2961                           ;	MCLR Pin Function Select
+  2962                           ;	MCLRE = ON, MCLR/VPP pin function is MCLR
+  2963                           ;	Flash Program Memory Code Protection
+  2964                           ;	CP = OFF, Program memory code protection is disabled
+  2965                           ;	Data Memory Code Protection
+  2966                           ;	CPD = OFF, Data memory code protection is disabled
+  2967                           ;	Brown-out Reset Enable
+  2968                           ;	BOREN = ON, Brown-out Reset enabled
+  2969                           ;	Clock Out Enable
+  2970                           ;	CLKOUTEN = OFF, CLKOUT function is disabled. I/O or oscillator function on the CLKOUT 
+      +                          pin
+  2971                           ;	Internal/External Switchover
+  2972                           ;	IESO = ON, Internal/External Switchover mode is enabled
+  2973                           ;	Fail-Safe Clock Monitor Enable
+  2974                           ;	FCMEN = ON, Fail-Safe Clock Monitor is enabled
+  2975  8007                     	org	32775
+  2976  8007  3FE4               	dw	16356
+  2977                           
+  2978                           ;Config register CONFIG2 @ 0x8008
+  2979                           ;	Flash Memory Self-Write Protection
+  2980                           ;	WRT = OFF, Write protection off
+  2981                           ;	PLL Enable
+  2982                           ;	PLLEN = ON, 4x PLL enabled
+  2983                           ;	Stack Overflow/Underflow Reset Enable
+  2984                           ;	STVREN = ON, Stack Overflow or Underflow will cause a Reset
+  2985                           ;	Brown-out Reset Voltage Selection
+  2986                           ;	BORV = LO, Brown-out Reset Voltage (Vbor), low trip point selected.
+  2987                           ;	Low-Voltage Programming Enable
+  2988                           ;	LVP = ON, Low-voltage programming enabled
+  2989  8008                     	org	32776
+  2990  8008  3FFF               	dw	16383
+
+Data Sizes:
+    Strings     0
+    Constant    512
+    Data        2
+    BSS         9
+    Persistent  36
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     12      14
+    BANK0            80     36      49
+    BANK1            80      0       0
+    BANK2            80      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->___wmul
+    ___wmul->_readADC
+    ___lmul->___wmul
+    ___bmul->_readADC
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _main->___lmul
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                24    24      0    2350
+                                             12 BANK0     24    24      0
+                      _ADCPhaseShift
+                          _Init_Main
+                            ___almod
+                             ___bmul
+                             ___lmul
+                             ___wmul
+                            _readADC
+ ---------------------------------------------------------------------------------
+ (1) _readADC                                              6     4      2      45
+                                              0 COMMON     6     4      2
+ ---------------------------------------------------------------------------------
+ (1) ___wmul                                               6     2      4     244
+                                              6 COMMON     6     2      4
+                            _readADC (ARG)
+ ---------------------------------------------------------------------------------
+ (1) ___lmul                                              12     4      8    1156
+                                              0 BANK0     12     4      8
+                             ___wmul (ARG)
+                            _readADC (ARG)
+ ---------------------------------------------------------------------------------
+ (1) ___bmul                                               4     3      1     168
+                                              6 COMMON     4     3      1
+                            _readADC (ARG)
+ ---------------------------------------------------------------------------------
+ (1) ___almod                                             11     3      8     448
+                                              0 COMMON    11     3      8
+ ---------------------------------------------------------------------------------
+ (1) _Init_Main                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _ADCPhaseShift                                        1     1      0       0
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _ISR                                                  0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _ADCPhaseShift
+   _Init_Main
+   ___almod
+   ___bmul
+     _readADC (ARG)
+   ___lmul
+     ___wmul (ARG)
+       _readADC (ARG)
+     _readADC (ARG)
+   ___wmul
+   _readADC
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM              F0      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            E      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               E      C       E       2      100.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+ABS                  0      0      3F       4        0.0%
+BITBANK0            50      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BANK0               50     24      31       6       61.3%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BITBANK1            50      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BANK1               50      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BITBANK2            50      0       0       9        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+BANK2               50      0       0      10        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+DATA                 0      0      3F      11        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.32 build 20210201212658 
+Symbol Table                                                                                   Tue Jun 14 12:55:44 2022
+
+         ___bmul@product 0078                       l82 06DD                       l90 0027  
+                     l67 0690                       l91 002A                       l76 06A4  
+                     l85 06EC                       l79 06B0                       l95 0093  
+    ___wmul@multiplicand 0078                      l102 02B0                      l260 06CF  
+                    l336 05CE                      l272 066A                      l346 0636  
+                    l258 06BB                      l284 0701                      l900 06A2  
+                    l910 06D6                      l902 06A8                      l912 06D7  
+                    l920 06B3                      l914 06DB                      l906 06D0  
+                    l922 06B7                      l916 06E1                      l908 06D2  
+                    l940 0653                      l932 0637                      l924 06C0  
+                    l950 06F3                      l942 0662                      l934 0640  
+                    l926 06C5                      l918 06B1                      l960 05BC  
+                    l952 06F7                      l936 0644                      l928 06CB  
+                    l890 0687                      l970 05E5                      l962 05BD  
+                    l954 06F9                      l946 06EE                      l938 064C  
+                    l980 0611                      l972 05E8                      l964 05C1  
+                    l956 0700                      l948 06EF                      l892 0692  
+                    l886 066B                      l982 0618                      l974 05F3  
+                    l966 05D2                      l894 0694                      l888 0675  
+                    l976 05F7                      l984 061E                      l968 05DD  
+                    l896 069D                      l992 0024                      l986 0623  
+                    l978 0609                      l898 069E                      l994 002F  
+                    l988 062E                      l996 0041                      l998 0055  
+                    u500 06E1                      u501 06E0                      u510 06B7  
+                    _PR2 001B                      u511 06B6                      u600 0700  
+                    u601 06FF                      u610 05C1                      u611 05C0  
+                    u620 05D2                      u540 06CB                      u700 002F  
+                    _ISR 0004                      u621 05D1                      u541 06CA  
+                    u525 06BC                      u701 002E                      u630 05E5  
+                    u550 0644                      u631 05E4                      u551 0643  
+                    u535 06C1                      u720 005B                      u721 005A  
+                    u650 05F7                      u490 06A8                      u651 05F6  
+                    u491 06A7                      u715 004B                      u660 0609  
+                    u580 0662                      u900 0296                      u740 0083  
+                    u661 0608                      u645 05E9                      u581 0661  
+                    u565 064D                      u805 00D8                      u741 0082  
+                    u590 06F3                      u910 02B7                      u830 010B  
+                    u591 06F2                      u575 0654                      u911 02B6  
+                    u831 010A                      u815 00EA                      u735 0073  
+                    u680 061E                      u920 0310                      u840 015B  
+                    u760 009B                      u681 061D                      u665 0605  
+                    u921 030F                      u905 0292                      u841 015A  
+                    u825 00FD                      u761 009A                      u690 0623  
+                    u850 0177                      u691 0622                      u675 0612  
+                    u755 0086                      u940 033A                      u860 01BC  
+                    u861 01BB                      u950 0366                      u870 0210  
+                    u790 00CE                      u951 0365                      u935 0330  
+                    u871 020F                      u855 0173                      u791 00CD  
+                    u775 00AB                      u945 0336                      u785 00BD  
+                    u890 0279                      u891 0278                      u884 021B  
+                    u885 021A                      u967 069F                      u977 06D8  
+                    _ctr 007D                      wreg 0009                     ?_ISR 0070  
+                   l1000 005B                     l1010 00C6                     l1002 007C  
+                   l1020 0155                     l1012 00CE                     l1004 0083  
+                   l1030 0210                     l1022 015B                     l1014 00F3  
+                   l1006 009B                     l1040 0309                     l1032 0272  
+                   l1024 01B5                     l1016 0105                     l1008 00B1  
+                   l1050 0374                     l1042 0310                     l1034 0279  
+                   l1026 01BC                     l1018 010B                     l1044 034C  
+                   l1036 02B7                     l1028 0209                     l1046 035F  
+                   l1038 02ED                     l1048 0366                     i1l73 000B  
+                   _ctr2 007C                     _main 0024                     _sine 04BC  
+                   fsr0h 0005                     indf0 0000                     fsr0l 0004  
+                   _step 004C                     btemp 007E                     start 000D  
+      ___bmul@multiplier 0079                    ??_ISR 0070          __end_of___almod 0637  
+                  ?_main 0070                    _ADRES 009B                    _T2CON 001C  
+                  i1l822 0006                    i1l824 000A                    u22_20 000A  
+                  u22_21 0009                    _TRISA 008C      ___lmul@multiplicand 0024  
+        __end_of_readADC 06B1                    _step1 004B                    _step2 004A  
+                  _step3 0049                    _step4 0048          __end_of_myarray 04BC  
+                  status 0003                    wtemp0 007E          __initialization 000F  
+           __end_of_main 03BC             __end_of_sine 05BC               _PhaseAccum 0044  
+ __size_of_ADCPhaseShift 001D                   ??_main 002C               _PhaseShift 004D  
+                 _ADCON0 009D                   _ADCON1 009E                   _ADRESH 009C  
+                 _ADRESL 009B                   _CCPR1L 0291                   _ANSELA 018C  
+                 _INTCON 000B                   _OSCCON 0099       __size_of_Init_Main 0026  
+                 ___bmul 06ED                   ___lmul 0637                ??___almod 0078  
+                 ___wmul 06B1                ??_readADC 0072             __pdataCOMMON 007C  
+          _ADCPhaseShift 06D0  __end_of__initialization 0020      ___bmul@multiplicand 0076  
+         __pcstackCOMMON 0070        __end_of_Init_Main 0691               __pbssBANK0 0044  
+         ?_ADCPhaseShift 0070               __pmaintext 0024                  ?___bmul 0076  
+                ?___lmul 0020                  ?___wmul 0076               __pintentry 0004  
+                _CCP1CON 0293           ___lmul@product 0028            readADC@AN_Val 0073  
+        __size_of___bmul 0015                  ___almod 05BC          __size_of___lmul 0034  
+        __size_of___wmul 001F                  __ptext1 0691                  __ptext2 06B1  
+                __ptext3 0637                  __ptext4 06ED                  __ptext5 05BC  
+                __ptext6 066B                  __ptext7 06D0                  _readADC 0691  
+           __size_of_ISR 0009                  _myarray 03BC          ??_ADCPhaseShift 0070  
+                main@ctr 0042     end_of_initialization 0020                _PORTAbits 000C  
+         __end_of___bmul 0702           __end_of___lmul 066B           __end_of___wmul 06D0  
+          __pidataCOMMON 0702      start_initialization 000F              __end_of_ISR 000D  
+              _Init_Main 066B                 ??___bmul 0077                 ??___lmul 007C  
+               ??___wmul 007A                ___latbits 0001            __pcstackBANK0 0020  
+             ?_Init_Main 0070                __pnvBANK0 004D                 ?___almod 0070  
+       ___almod@dividend 0074                 ?_readADC 0070           ___wmul@product 007A  
+               _PIR1bits 0011               _ADCON0bits 009D               _ADCON1bits 009E  
+      ___wmul@multiplier 0076              ??_Init_Main 0070        ___lmul@multiplier 0020  
+  __end_of_ADCPhaseShift 06ED               _APFCONbits 011D         __size_of___almod 007B  
+         readADC@channel 0075         __size_of_readADC 0020                 _main$895 003C  
+        ___almod@divisor 0070          ___almod@counter 0079            __size_of_main 0398  
+               int$flags 007E                 main@ctr2 0040               _INTCONbits 000B  
+               intlevel1 0000            __pstringtext1 03BC            __pstringtext2 04BC  
+             _OPTION_REG 0095             ___almod@sign 007A  
